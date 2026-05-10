@@ -37,15 +37,15 @@
   --brand-accent: #f59e0b;
   --brand-accent-bg: #fef3c7;
 
-  /* ★ Semantic colors */
-  --brand-success: #16a34a;
-  --brand-success-bg: rgba(22, 163, 74, 0.10);
-  --brand-danger: #dc2626;
-  --brand-danger-bg: rgba(220, 38, 38, 0.10);
-  --brand-warning: #d97706;
-  --brand-warning-bg: rgba(217, 119, 6, 0.10);
-  --brand-info: #2563eb;
-  --brand-info-bg: rgba(37, 99, 235, 0.10);
+  /* ★ Semantic colors (Contrast Optimized) */
+  --brand-success: #166534;
+  --brand-success-bg: #f0fdf4;
+  --brand-danger: #991b1b;
+  --brand-danger-bg: #fef2f2;
+  --brand-warning: #92400e;
+  --brand-warning-bg: #fffbeb;
+  --brand-info: #1e40af;
+  --brand-info-bg: #eff6ff;
 
   /* ★ Neutral scale */
   --brand-bg: #ffffff;

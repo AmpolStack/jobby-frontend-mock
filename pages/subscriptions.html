@@ -131,7 +131,7 @@
 
       <!-- SCREEN: SUBSCRIPTIONS & RENTS ──────────────────────── -->
       <section class="screen active" id="subscriptions-screen">
-        <div class="page-head" style="margin-bottom: 24px;">
+        <div class="page-head">
           <h1>Subscriptions & Rents</h1>
           <button class="cta" onclick="simulateOperation('New subscription created')">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -148,7 +148,7 @@
           style="padding: 16px; margin-bottom: 24px; display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 200px;">
             <p class="section-label" style="margin-bottom: 8px;">Filter by Sectional</p>
-            <select class="brand-input">
+            <select class="brand-input" aria-label="Filtrar por seccional">
               <option value="all">All Sectionals</option>
               <option value="north">North Branch (Pretoria)</option>
               <option value="south">South Station (Durban)</option>
@@ -156,7 +156,7 @@
           </div>
           <div style="flex: 1; min-width: 200px;">
             <p class="section-label" style="margin-bottom: 8px;">Filter by Status</p>
-            <select class="brand-input">
+            <select class="brand-input" aria-label="Filtrar por estado">
               <option value="all">All Statuses</option>
               <option value="active">Active</option>
               <option value="expired">Expired</option>
@@ -164,7 +164,7 @@
           </div>
           <div style="flex: 1; min-width: 200px;">
             <p class="section-label" style="margin-bottom: 8px;">Filter by Days</p>
-            <select class="brand-input">
+            <select class="brand-input" aria-label="Filtrar por periodo de tiempo">
               <option value="today">Today</option>
               <option value="7days">Last 7 Days</option>
               <option value="30days">Last 30 Days</option>
@@ -199,7 +199,7 @@
             <div class="product-content">
               <div class="product-heading">
                 <h2 style="font-size: 1.05rem;">John McCarthy</h2>
-                <div class="sales-chip" style="background: #fef3c7; color: #d97706;">Rent</div>
+                <div class="sales-chip" style="background: var(--warning-bg); color: var(--warning);">Rent</div>
               </div>
               <p class="price" style="font-size: 0.95rem;">Cinema Basic Room</p>
               <p class="body-copy small" style="margin-top: 4px;">Reserved for: 10/05/2026 (Today, 18:00)</p>

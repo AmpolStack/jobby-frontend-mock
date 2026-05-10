@@ -131,18 +131,18 @@
 
       <!-- SCREEN: TRANSACTION DETAIL ─────────────────────────── -->
       <section class="screen active" id="transaction-screen">
-        <div class="page-head" style="margin-bottom: 30px;">
+        <div class="page-head">
           <div style="display: flex; align-items: center; gap: 16px;">
             <a href="sales.html" class="ghost-action small-button" style="text-decoration: none;">← Back to Sales</a>
             <h1>Transaction #TRX-901</h1>
           </div>
-          <div style="display: flex; gap: 10px;">
+          <div class="page-actions">
             <button class="secondary-button" onclick="window.print()">Print Receipt</button>
             <button class="cta" onclick="simulateOperation('Receipt sent to email')">Send to Email</button>
           </div>
         </div>
 
-        <div class="cashier-layout" style="grid-template-columns: 2fr 1.2fr; gap: 24px;">
+        <div class="cashier-layout">
           <div class="cashier-left">
             <div class="card" style="padding: 30px;">
               <h2 style="font-size: 1.2rem; margin-bottom: 24px;">Order Summary</h2>
@@ -180,7 +180,7 @@
               </div>
 
               <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
-                <div style="width: 280px; display: grid; gap: 12px;">
+                <div style="width: 100%; max-width: 280px; display: grid; gap: 12px;">
                   <div
                     style="display: flex; justify-content: space-between; font-size: 0.95rem; color: var(--text-secondary);">
                     <span>Subtotal</span><strong>$50.00</strong>

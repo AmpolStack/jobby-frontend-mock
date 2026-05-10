@@ -16,11 +16,15 @@
   --muted: #333344;
   --border: #e0e0ea;
 
-  /* Semantic */
-  --success: #16a34a;
-  --success-bg: rgba(22, 163, 74, 0.10);
-  --danger: #dc2626;
-  --danger-bg: rgba(220, 38, 38, 0.10);
+  /* Semantic (Contrast Optimized) */
+  --success: #166534; /* Darker green */
+  --success-bg: #f0fdf4;
+  --danger: #991b1b;  /* Darker red */
+  --danger-bg: #fef2f2;
+  --warning: #92400e; /* Darker amber */
+  --warning-bg: #fffbeb;
+  --info: #1e40af;    /* Darker blue */
+  --info-bg: #eff6ff;
 
   /* Elevation */
   --shadow-sm: 0 1px 4px rgba(67, 40, 177, 0.06);
@@ -998,8 +1002,8 @@ p {
 }
 
 .employee-avatar.green {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--success-bg);
+  color: var(--success);
 }
 
 .employee-avatar.dark {
@@ -1384,6 +1388,18 @@ p {
 }
 
 @media (max-width: 768px) {
+  .page-actions { width: 100%; flex-direction: column; }
+  .page-actions button { width: 100%; justify-content: center; }
+
+@media (max-width: 768px) {
+  .page-actions { width: 100%; flex-direction: column; }
+  .page-actions button { width: 100%; justify-content: center; }
+
+  .page-head { flex-direction: column; align-items: stretch; }
+  .page-head > div { flex-direction: column; align-items: stretch; text-align: center; }
+  .page-head h1 { font-size: 1.5rem; text-align: center; }
+  .page-head .cta, .page-head .secondary-button, .page-head .ghost-action { width: 100%; justify-content: center; }
+}
   :root {
     --sidebar-w: 0px;
   }
@@ -1547,3 +1563,5 @@ img.profile-hero-avatar {
 }
 /* ── CHART ACCESSIBILITY ─────────────────────────────────────── */
 .chart-bar:hover, .chart-bar:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; filter: brightness(0.9); }
+
+.page-actions { display: flex; gap: 10px; }

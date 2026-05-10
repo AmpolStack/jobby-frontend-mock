@@ -150,33 +150,33 @@
         </div>
 
         <div class="business-grid">
-          <article class="business-card" style="cursor: pointer;" role="button" tabindex="0" onclick="showScreen('sectional-detail-screen')" onkeydown="if(event.key===`Enter`||event.key===` `){showScreen('sectional-detail-screen')}">
+          <article class="business-card" style="cursor: pointer;" onclick="showScreen('sectional-detail-screen')">
             <div class="business-illustration blue"></div>
             <div class="business-copy">
               <h2>North Branch</h2>
               <p>Pretoria</p>
               <p class="body-copy small">15 Employees · 120 Products</p>
-              <button class="ghost-action">Manage Sectional →</button>
+              <button class="ghost-action" onclick="showScreen('sectional-detail-screen')">Manage Sectional →</button>
             </div>
           </article>
 
-          <article class="business-card" style="cursor: pointer;" role="button" tabindex="0" onclick="showScreen('sectional-detail-screen')" onkeydown="if(event.key===`Enter`||event.key===` `){showScreen('sectional-detail-screen')}">
+          <article class="business-card" style="cursor: pointer;" onclick="showScreen('sectional-detail-screen')">
             <div class="business-illustration teal"></div>
             <div class="business-copy">
               <h2>South Station</h2>
               <p>Durban</p>
               <p class="body-copy small">8 Employees · 85 Products</p>
-              <button class="ghost-action">Manage Sectional →</button>
+              <button class="ghost-action" onclick="showScreen('sectional-detail-screen')">Manage Sectional →</button>
             </div>
           </article>
 
-          <article class="business-card" style="cursor: pointer;" role="button" tabindex="0" onclick="showScreen('sectional-detail-screen')" onkeydown="if(event.key===`Enter`||event.key===` `){showScreen('sectional-detail-screen')}">
+          <article class="business-card" style="cursor: pointer;" onclick="showScreen('sectional-detail-screen')">
             <div class="business-illustration orange"></div>
             <div class="business-copy">
               <h2>Downtown Kiosk</h2>
               <p>Cape Town</p>
               <p class="body-copy small">3 Employees · 42 Products</p>
-              <button class="ghost-action">Manage Sectional →</button>
+              <button class="ghost-action" onclick="showScreen('sectional-detail-screen')">Manage Sectional →</button>
             </div>
           </article>
         </div>
@@ -184,7 +184,7 @@
 
       <!-- SCREEN: SECTIONAL DETAIL ───────────────────────────── -->
       <section class="screen" id="sectional-detail-screen">
-        <div class="page-head" style="margin-bottom: 24px;">
+        <div class="page-head">
           <div style="display: flex; align-items: center; gap: 16px;">
             <button class="ghost-action small-button" onclick="showScreen('sectionals-screen')">← Back to list</button>
             <h1 style="font-size: 1.8rem;">North Branch (Pretoria)</h1>
@@ -199,7 +199,7 @@
           <div><span>Unique Products</span><strong>120</strong></div>
         </div>
 
-        <div class="cashier-layout" style="grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div class="cashier-layout">
           <!-- Employees Panel -->
           <section class="articles-panel card" style="padding: 24px;">
             <div class="articles-head" style="margin-bottom: 20px;">
@@ -344,7 +344,7 @@
 
   <!-- Modal: Assign Employee -->
   <div class="modal-overlay hidden" id="assign-employee-modal">
-    <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modal-assign-emp-title">
       <div class="modal-header">
         <h2 id="modal-assign-emp-title">Assign Employee to Sectional</h2>
         <button type="button" class="close-modal" aria-label="Cerrar ventana">×</button>
@@ -352,8 +352,8 @@
       <form class="modal-form"
         onsubmit="event.preventDefault(); simulateOperation('Employee assigned to sectional'); document.getElementById('assign-employee-modal').classList.add('hidden');">
         <div class="form-group">
-          <label>Select Employee</label>
-          <select class="brand-input" required>
+          <label for="assign-emp-select">Select Employee</label>
+          <select id="assign-emp-select" class="brand-input" required>
             <option value="">-- Choose employee --</option>
             <option>Kathleen Booth</option>
             <option>John McCarthy</option>
@@ -362,8 +362,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Role in Sectional</label>
-          <input type="text" class="brand-input" placeholder="e.g. Store Manager" required>
+          <label for="assign-emp-role">Role in Sectional</label>
+          <input type="text" id="assign-emp-role" class="brand-input" placeholder="e.g. Store Manager" required>
         </div>
         <div class="modal-actions">
           <button type="button" class="secondary-button close-modal">Cancel</button>
@@ -375,7 +375,7 @@
 
   <!-- Modal: Add Product to Sectional -->
   <div class="modal-overlay hidden" id="assign-product-modal">
-    <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modal-add-prod-sectional-title">
       <div class="modal-header">
         <h2 id="modal-add-prod-sectional-title">Add Product to Sectional</h2>
         <button type="button" class="close-modal" aria-label="Cerrar ventana">×</button>
@@ -383,8 +383,8 @@
       <form class="modal-form"
         onsubmit="event.preventDefault(); simulateOperation('Product added to sectional stock'); document.getElementById('assign-product-modal').classList.add('hidden');">
         <div class="form-group">
-          <label>Select Product</label>
-          <select class="brand-input" required>
+          <label for="assign-prod-select">Select Product</label>
+          <select id="assign-prod-select" class="brand-input" required>
             <option value="">-- Choose product --</option>
             <option>Carbonated Drink</option>
             <option>Beer Soda</option>
@@ -393,8 +393,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Initial Stock Amount</label>
-          <input type="number" class="brand-input" placeholder="e.g. 50" min="0" required>
+          <label for="assign-prod-stock">Initial Stock Amount</label>
+          <input type="number" id="assign-prod-stock" class="brand-input" placeholder="e.g. 50" min="0" required>
         </div>
         <div class="modal-actions">
           <button type="button" class="secondary-button close-modal">Cancel</button>

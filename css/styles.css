@@ -13,7 +13,7 @@
   --surface-alt: #ebebed;
   --text: #1a1a2e;
   --text-secondary: #333344;
-  --muted: #555566;
+  --muted: #333344;
   --border: #e0e0ea;
 
   /* Semantic */
@@ -363,30 +363,7 @@ p {
 }
 
 .sidebar-footer {
-  padding: 14px 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  margin-top: auto;
-}
-
-.sidebar-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.sidebar-username {
-  font-size: 0.83rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.sidebar-role {
-  font-size: 0.73rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin-top: 1px;
+  display: none; /* Removed per user request */
 }
 
 /* Backdrop (mobile) */
@@ -437,14 +414,23 @@ p {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 6px 12px;
+  transition: background var(--t);
+  cursor: pointer;
+  text-decoration: none;
 }
-
+  
+.topbar-right:hover,
+.topbar-right:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+  
 .topbar-user {
   font-size: 0.88rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .topbar-avatar {
@@ -1559,3 +1545,5 @@ img.profile-hero-avatar {
   height: 120px !important;
   border-radius: 50% !important;
 }
+/* ── CHART ACCESSIBILITY ─────────────────────────────────────── */
+.chart-bar:hover, .chart-bar:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; filter: brightness(0.9); }

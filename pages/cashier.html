@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -42,7 +42,7 @@
       <span class="logo-mark">J</span>
       <span>JOBBY</span>
     </div>
-    <nav class="sidebar-nav">
+    <nav class="sidebar-nav" role="navigation" aria-label="Navegación principal">
       <a href="home.html" class="menu-item">
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -112,32 +112,18 @@
       </a>
     </nav>
 
-    <div class="sidebar-footer">
-      <a href="profile.html" style="text-decoration: none; display: block;">
-        <div class="sidebar-user" style="transition: background var(--t); cursor: pointer;"
-          onmouseover="this.style.background='rgba(255,255,255,0.2)'"
-          onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-          <img class="hero-avatar side small"
-            src="https://ui-avatars.com/api/?name=Founder+Username&background=020617&color=fff&size=128" alt="Avatar">
-          <div>
-            <p class="sidebar-username">Founder Username</p>
-            <p class="sidebar-role">Owner</p>
-          </div>
-        </div>
-      </a>
-    </div>
-  </aside>
+    </aside>
 
   <!-- ── MAIN LAYOUT ──────────────────────────────────────────── -->
   <div class="app-layout">
 
     <!-- TOP BAR -->
-    <header class="topbar">
+    <header class="topbar" role="banner" aria-label="Barra superior">
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
       <strong class="topbar-brand" id="nav-business">JOBBY</strong>
-      <a href="profile.html" class="topbar-right" style="text-decoration: none; color: inherit;">
+      <a href="profile.html" class="topbar-right" >
         <span class="topbar-user">Founder Username</span>
         <img class="topbar-avatar"
           src="https://ui-avatars.com/api/?name=Founder+Username&background=020617&color=fff&size=128" alt="Avatar">
@@ -145,7 +131,7 @@
     </header>
 
     <!-- CONTENT -->
-    <main class="content" id="content">
+    <main class="content" role="main" aria-label="Contenido principal" id="content">
       <!-- SCREEN: CASHIER ────────────────────────────────────── -->
       <section class="screen active" id="cashier-screen">
         <div class="page-head">
@@ -157,7 +143,7 @@
           <div class="cashier-left">
             <section class="articles-panel card">
               <div class="articles-head">
-                <h2 id="modal-title">Articles</h2>
+                <h2 id="cashier-articles-title">Articles</h2>
                 <button class="ghost-action">+ Add Article</button>
               </div>
 
@@ -264,7 +250,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="footer-bar">
+    <footer class="footer-bar" role="contentinfo" aria-label="Pie de página">
       <div class="footer-section">
         <p class="footer-title">Contacts</p>
         <p>Phone: <a href="tel:+573124590501"><strong>+57 3124590501</strong></a></p>
@@ -290,7 +276,7 @@
   <div class="modal-overlay hidden" id="employee-modal">
     <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-header">
-        <h2 id="modal-title">Add new Employee</h2>
+        <h2 id="modal-employee-title">Add new Employee</h2>
         <button type="button" class="close-modal" aria-label="Cerrar ventana">×</button>
       </div>
       <form id="employee-form" class="modal-form">
@@ -318,7 +304,7 @@
   <div class="modal-overlay hidden" id="product-modal">
     <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-header">
-        <h2 id="modal-title">Add new Product</h2>
+        <h2 id="modal-product-title">Add new Product</h2>
         <button type="button" class="close-modal" aria-label="Cerrar ventana">×</button>
       </div>
       <form id="product-form" class="modal-form">

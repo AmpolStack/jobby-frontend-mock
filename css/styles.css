@@ -338,6 +338,11 @@ p {
   transition: opacity var(--t);
 }
 
+.menu-item:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
 .menu-item:hover {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
@@ -1498,3 +1503,59 @@ p {
   }
 }
 
+
+
+a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* IMAGE FIXES */
+img.business-illustration,
+img.business-banner-art,
+img.hero-avatar,
+img.topbar-avatar,
+img.employee-avatar,
+img.product-thumb,
+img.profile-hero-avatar {
+  object-fit: cover !important;
+  display: block;
+}
+
+img.product-thumb {
+  width: 90px !important;
+  height: 90px !important;
+  border-radius: var(--radius-lg);
+}
+
+img.business-illustration {
+  width: 100% !important;
+  aspect-ratio: 4/3 !important;
+  height: auto !important;
+}
+
+img.business-banner-art {
+  width: 100% !important;
+  height: 240px !important;
+}
+
+img.employee-avatar {
+  width: 100% !important;
+  aspect-ratio: 4/3 !important;
+  height: auto !important;
+}
+
+img.hero-avatar.side.small {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+img.topbar-avatar {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+}
+
+img.profile-hero-avatar {
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 50% !important;
+}

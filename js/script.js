@@ -29,11 +29,27 @@ const registerSaleBtn = document.getElementById("register-sale-btn");
 // ── Modals Logic ──────────────────────────────────────────────
 function openModal(modal) {
   modal.classList.remove("hidden");
+  modal.setAttribute("aria-hidden", "false");
+  const firstInput = modal.querySelector("input, button, select, textarea");
+  if (firstInput) firstInput.focus();
 }
 
 function closeModal(modal) {
   modal.classList.add("hidden");
+  modal.setAttribute("aria-hidden", "true");
 }
+
+// Close modals & sidebar on Escape key
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".modal-overlay:not(.hidden)").forEach(modal => {
+      closeModal(modal);
+    });
+    if (sidebar?.classList.contains("open")) {
+      closeSidebar();
+    }
+  }
+});
 
 addEmployeeBtn?.addEventListener("click", () => openModal(employeeModal));
 addProductBtn?.addEventListener("click", () => openModal(productModal));
@@ -110,12 +126,14 @@ function openSidebar() {
   sidebar.classList.add("open");
   backdrop.classList.remove("hidden");
   backdrop.classList.add("visible");
+  hamburger?.setAttribute("aria-expanded", "true");
 }
 
 function closeSidebar() {
   sidebar.classList.remove("open");
   backdrop.classList.remove("visible");
   backdrop.classList.add("hidden");
+  hamburger?.setAttribute("aria-expanded", "false");
 }
 
 hamburger.addEventListener("click", openSidebar);
@@ -142,7 +160,12 @@ function showScreen(screenId) {
 
 // Menu items
 menuItems.forEach(item => {
-  item.addEventListener("click", () => showScreen(item.dataset.screenTarget));
+  item.addEventListener("click", (e) => {
+    if (item.dataset.screenTarget) {
+      e.preventDefault();
+      showScreen(item.dataset.screenTarget);
+    }
+  });
 });
 
 // "Go to Business" cards → home/dashboard screen
@@ -155,11 +178,12 @@ toggles.forEach(toggle => {
   toggle.addEventListener("click", () => {
     const card = toggle.closest(".checkout-item");
     card.classList.toggle("expanded");
-    toggle.textContent = card.classList.contains("expanded")
-      ? "Hide details"
-      : "Show details";
+    const isExpanded = card.classList.contains("expanded");
+    toggle.setAttribute("aria-expanded", isExpanded);
+    toggle.textContent = isExpanded ? "Hide details" : "Show details";
   });
 });
 
 // ── Init ──────────────────────────────────────────────────────
-showScreen("board-screen");
+const initialScreen = document.querySelector(".screen")?.id;
+if (initialScreen) showScreen(initialScreen);

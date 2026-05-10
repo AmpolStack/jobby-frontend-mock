@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Jobby ERP – Administra espacios, personal, productos y caja desde una sola vista clara.">
+  <title>Jobby ERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/brand.css">
+</head>
+
+<body>
+
+  <!-- Skip to content (accesibilidad) -->
+  <a href="#content" class="skip-link">Saltar al contenido</a>
+
+  <!-- Progress bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Success toast -->
+  <div id="toast">
+    <span class="toast-icon">✓</span>
+    <span id="toast-message">Done!</span>
+  </div>
+
+  <!-- Bottom Progress bar -->
+  <div id="progress-bar-bottom"></div>
+
+  <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="logo-mark">J</span>
+      <span>JOBBY</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="home.html" class="menu-item active">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        Home
+      </a>
+      <a href="sectionals.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        Sectionals
+      </a>
+      <a href="employees.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 00-3-3.87" />
+          <path d="M16 3.13a4 4 0 010 7.75" />
+        </svg>
+        Employees
+      </a>
+      <a href="products.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        Products
+      </a>
+      <a href="cashier.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2" />
+          <line x1="1" y1="10" x2="23" y2="10" />
+        </svg>
+        Cashier
+      </a>
+      <a href="clients.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        Clients
+      </a>
+      <a href="sales.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+        Sales Record
+      </a>
+      <a href="subscriptions.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        Subscriptions & Rents
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="profile.html" style="text-decoration: none; display: block;">
+        <div class="sidebar-user" style="transition: background var(--t); cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+          <img class="hero-avatar side small" src="https://ui-avatars.com/api/?name=Founder+Username&background=020617&color=fff&size=128" alt="Avatar">
+          <div>
+            <p class="sidebar-username">Founder Username</p>
+            <p class="sidebar-role">Owner</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ── MAIN LAYOUT ──────────────────────────────────────────── -->
+  <div class="app-layout">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <strong class="topbar-brand" id="nav-business">JOBBY</strong>
+      <a href="profile.html" class="topbar-right" style="text-decoration: none; color: inherit;">
+        <span class="topbar-user">Founder Username</span>
+        <img class="topbar-avatar" src="https://ui-avatars.com/api/?name=Founder+Username&background=020617&color=fff&size=128" alt="Avatar">
+      </a>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content" id="content" tabindex="-1">
+
+      <!-- SCREEN: BOARD ──────────────────────────────────────── -->
+      <section class="screen active" id="board-screen">
+        <div class="page-hero">
+          <div>
+            <h1>Your Businesess</h1>
+            <p class="lead">Manage spaces, staff, products and cash register from a single clear view.</p>
+          </div>
+        </div>
+
+        <div class="section-actions">
+          <button class="cta" id="add-business-btn">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Add new Business
+          </button>
+        </div>
+
+        <div class="business-grid">
+          <article class="business-card">
+            <img class="business-illustration orange" src="https://placehold.co/400x300/f97316/ffffff?text=Marketly" alt="Marketly">
+            <div class="business-copy">
+              <h3>Jobby-marketly</h3>
+              <p>Tienda principal con operaciones diarias, ventas y control de personal.</p>
+              <button class="ghost-action enter-business">Go to Business →</button>
+            </div>
+          </article>
+
+          <article class="business-card">
+            <img class="business-illustration blue" src="https://placehold.co/400x300/3b82f6/ffffff?text=Marketfy" alt="Marketfy">
+            <div class="business-copy">
+              <h3>Jobby-marketfy</h3>
+              <p>Unidad secundaria para pruebas de catálogo y validación de campañas.</p>
+              <button class="ghost-action enter-business">Go to Business →</button>
+            </div>
+          </article>
+
+          <article class="business-card">
+            <img class="business-illustration teal" src="https://placehold.co/400x300/14b8a6/ffffff?text=Market-up" alt="Market-up">
+            <div class="business-copy">
+              <h3>Jobby-market-up</h3>
+              <p>Espacio dedicado a nuevos servicios, rentas y experiencias premium.</p>
+              <button class="ghost-action enter-business">Go to Business →</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SCREEN: HOME (Business Dashboard) ─────────────────── -->
+      <section class="screen" id="home-screen">
+        <div class="business-banner">
+          <img class="business-banner-art" src="https://placehold.co/1200x300/0f172a/ffffff?text=Jobby+Marketly+Cover" alt="Banner">
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Left column -->
+          <div class="dashboard-main">
+            <div class="panel-header">
+              <div>
+                <p class="section-label">Business Name</p>
+                <h1>Jobby-marketly</h1>
+              </div>
+              <button class="ghost-action">EDIT</button>
+            </div>
+
+            <div class="details-grid">
+              <div class="details-main">
+                <p class="section-label">Description</p>
+                <p class="body-copy">
+                  Plataforma pensada para una PYME que necesita facturar, controlar productos,
+                  monitorear su equipo y operar caja con menos fricción visual.
+                </p>
+                <p class="since">since 10/03/2025</p>
+              </div>
+              <div class="details-side">
+                <div>
+                  <p class="section-label">Country</p>
+                  <strong>Colombia</strong>
+                </div>
+                <div>
+                  <p class="section-label">City</p>
+                  <strong>Bogotá</strong>
+                </div>
+                <div>
+                  <p class="section-label">Social Networks</p>
+                  <strong>Instagram · Twitter</strong>
+                </div>
+                <div>
+                  <p class="section-label">Contacts</p>
+                  <strong>hello@jobby.app</strong>
+                </div>
+              </div>
+            </div>
+
+            <section class="stats-card">
+              <h2 id="modal-title">General Business Stats</h2>
+              <div class="stats-grid">
+                <div><span>Total Sales</span><strong>43K</strong></div>
+                <div><span>Sales With Jobby Shop</span><strong>43K</strong></div>
+                <div><span>Locals</span><strong>4</strong></div>
+                <div><span>Products</span><strong>102</strong></div>
+                <div><span>Employees</span><strong>102</strong></div>
+              </div>
+              <div class="metric-block">
+                <button class="dropdown">In Week</button>
+                <div class="metric-details">
+                  <div><span>Sales in Last</span><strong>224</strong></div>
+                  <div><span>Sales With Jobby Shop</span><strong>112</strong></div>
+                  <div><span>Average Sales</span><strong>201</strong></div>
+                  <div><span>Average Sales With Jobby Shop</span><strong>101</strong></div>
+                  <div><span>Current Sales</span><strong>112</strong></div>
+                  <div><span>Current Sales With Jobby Shop</span><strong>80</strong></div>
+                </div>
+                <button class="dropdown">In Month</button>
+                <button class="dropdown">In Year</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-bar">
+      <div class="footer-section">
+        <p class="footer-title">Contacts</p>
+        <p>Phone: <a href="tel:+573124590501"><strong>+57 3124590501</strong></a></p>
+        <p>Email: <a href="mailto:email-example@gmail.com"><strong>email-example@gmail.com</strong></a></p>
+        <p>Twitter: <a href="https://twitter.com/amapola-example" target="_blank"><strong>@amapola-example</strong></a></p>
+      </div>
+      <div class="footer-section">
+        <p class="footer-title">Development</p>
+        <p>GitHub: <a href="https://github.com/AmpolStack/jobby-repo" target="_blank"><strong>AmpolStack/jobby-repo.git</strong></a></p>
+        <p>Docs: <a href="https://notion.com/slides/jobbydocs" target="_blank"><strong>notion.com/slides/jobbydocs</strong></a></p>
+        <p class="footer-powered">Powered by @Amapola</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Mobile sidebar overlay -->
+  <div class="sidebar-backdrop hidden" id="sidebar-backdrop"></div>
+
+  <script src="../js/script.js"></script>
+</body>
+
+</html>

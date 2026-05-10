@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Jobby ERP – Administra espacios, personal, productos y caja desde una sola vista clara.">
+  <title>Jobby ERP - Sales Record</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/brand.css">
+</head>
+
+<body>
+  <!-- Skip to content (accesibilidad) -->
+  <a href="#content" class="skip-link">Saltar al contenido</a>
+
+  <!-- Progress bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Success toast -->
+  <div id="toast">
+    <span class="toast-icon">✓</span>
+    <span id="toast-message">Done!</span>
+  </div>
+
+  <!-- Bottom Progress bar -->
+  <div id="progress-bar-bottom"></div>
+
+  <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="logo-mark">J</span>
+      <span>JOBBY</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="home.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        Home
+      </a>
+      <a href="sectionals.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        Sectionals
+      </a>
+      <a href="employees.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 00-3-3.87" />
+          <path d="M16 3.13a4 4 0 010 7.75" />
+        </svg>
+        Employees
+      </a>
+      <a href="products.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        Products
+      </a>
+      <a href="cashier.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2" />
+          <line x1="1" y1="10" x2="23" y2="10" />
+        </svg>
+        Cashier
+      </a>
+      <a href="clients.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        Clients
+      </a>
+      <a href="sales.html" class="menu-item active">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+        Sales Record
+      </a>
+      <a href="subscriptions.html" class="menu-item">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        Subscriptions & Rents
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <img class="hero-avatar side small" src="https://ui-avatars.com/api/?name=Founder+Username&background=020617&color=fff&size=128" alt="Avatar">
+        <div>
+          <p class="sidebar-username">Founder Username</p>
+          <p class="sidebar-role">Owner</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN LAYOUT ──────────────────────────────────────────── -->
+  <div class="app-layout">
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <strong class="topbar-brand" id="nav-business">JOBBY</strong>
+      <div class="topbar-right">
+        <span class="topbar-user">Founder Username</span>
+        <img class="topbar-avatar" src="https://ui-avatars.com/api/?name=Founder+Username&background=020617&color=fff&size=128" alt="Avatar">
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content" id="content">
+
+      <!-- SCREEN: SALES RECORD ───────────────────────────────── -->
+      <section class="screen active" id="sales-screen">
+        <div class="page-head">
+          <h1>Sales Record</h1>
+          <button class="secondary-button">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Export CSV
+          </button>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin-bottom: 24px;">
+           <div><span>Total Revenue</span><strong>$124,500</strong></div>
+           <div><span>Total Sales</span><strong>1,204</strong></div>
+           <div><span>Avg. Order Value</span><strong>$103.40</strong></div>
+           <div><span>Growth</span><strong style="color: var(--success);">+14.5%</strong></div>
+        </div>
+
+        <div class="cashier-layout" style="grid-template-columns: 2fr 1fr;">
+           <div class="cashier-left">
+              <!-- Chart Mockup -->
+              <section class="card" style="padding: 24px;">
+                 <h3 style="font-size: 1.1rem; margin-bottom: 16px;">Revenue Overview (Last 7 Days)</h3>
+                 <!-- CSS Chart mockup -->
+                 <div class="chart-mockup" style="height: 220px; display: flex; align-items: flex-end; gap: 14px; margin-top: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+                    <div style="flex: 1; background: var(--primary-bg); height: 40%; transition: height var(--t); cursor: pointer;" title="Mon: $1200" onmouseover="this.style.background='var(--primary-light)'" onmouseout="this.style.background='var(--primary-bg)'"></div>
+                    <div style="flex: 1; background: var(--primary-bg); height: 60%; transition: height var(--t); cursor: pointer;" title="Tue: $1800" onmouseover="this.style.background='var(--primary-light)'" onmouseout="this.style.background='var(--primary-bg)'"></div>
+                    <div style="flex: 1; background: var(--primary-bg); height: 35%; transition: height var(--t); cursor: pointer;" title="Wed: $1050" onmouseover="this.style.background='var(--primary-light)'" onmouseout="this.style.background='var(--primary-bg)'"></div>
+                    <div style="flex: 1; background: var(--primary); height: 80%; transition: height var(--t); cursor: pointer;" title="Thu: $2400" onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'"></div>
+                    <div style="flex: 1; background: var(--primary-bg); height: 50%; transition: height var(--t); cursor: pointer;" title="Fri: $1500" onmouseover="this.style.background='var(--primary-light)'" onmouseout="this.style.background='var(--primary-bg)'"></div>
+                    <div style="flex: 1; background: var(--primary-bg); height: 90%; transition: height var(--t); cursor: pointer;" title="Sat: $2700" onmouseover="this.style.background='var(--primary-light)'" onmouseout="this.style.background='var(--primary-bg)'"></div>
+                    <div style="flex: 1; background: var(--primary-bg); height: 75%; transition: height var(--t); cursor: pointer;" title="Sun: $2250" onmouseover="this.style.background='var(--primary-light)'" onmouseout="this.style.background='var(--primary-bg)'"></div>
+                 </div>
+                 <div style="display: flex; justify-content: space-between; margin-top: 10px; color: var(--muted); font-size: 0.8rem; font-weight: 600;">
+                    <span style="flex: 1; text-align: center;">Mon</span>
+                    <span style="flex: 1; text-align: center;">Tue</span>
+                    <span style="flex: 1; text-align: center;">Wed</span>
+                    <span style="flex: 1; text-align: center; color: var(--primary);">Thu</span>
+                    <span style="flex: 1; text-align: center;">Fri</span>
+                    <span style="flex: 1; text-align: center;">Sat</span>
+                    <span style="flex: 1; text-align: center;">Sun</span>
+                 </div>
+              </section>
+
+              <!-- Recent Sales Table Mockup -->
+              <section class="card" style="padding: 24px; margin-top: 20px;">
+                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3 style="font-size: 1.1rem;">Recent Transactions</h3>
+                    <button class="ghost-action small-button">Filter</button>
+                 </div>
+                 <div class="summary-lines" style="margin-top: 10px;">
+                    <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 5px; background: transparent; border-radius: 0; border-top: none; border-left: none; border-right: none;">
+                       <span class="section-label" style="margin: 0;">ID</span>
+                       <span class="section-label" style="margin: 0;">Client</span>
+                       <span class="section-label" style="margin: 0;">Date</span>
+                       <span class="section-label" style="margin: 0; text-align: right;">Amount</span>
+                    </div>
+                    <a href="transaction-detail.html" style="text-decoration: none; color: inherit; display: block; border-bottom: 1px solid var(--border); transition: background var(--t);" onmouseover="this.style.background='var(--primary-bg)'" onmouseout="this.style.background='transparent'">
+                       <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; padding: 10px;">
+                          <span style="color: var(--primary); font-weight: 600;">#TRX-901</span><span>Kathleen Booth</span><span>Today, 14:30</span><strong style="text-align: right;">$177.00</strong>
+                       </div>
+                    </a>
+                    <a href="transaction-detail.html" style="text-decoration: none; color: inherit; display: block; border-bottom: 1px solid var(--border); transition: background var(--t);" onmouseover="this.style.background='var(--primary-bg)'" onmouseout="this.style.background='transparent'">
+                       <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; padding: 10px;">
+                          <span style="color: var(--primary); font-weight: 600;">#TRX-900</span><span>John McCarthy</span><span>Today, 11:15</span><strong style="text-align: right;">$45.50</strong>
+                       </div>
+                    </a>
+                    <a href="transaction-detail.html" style="text-decoration: none; color: inherit; display: block; border-bottom: 1px solid var(--border); transition: background var(--t);" onmouseover="this.style.background='var(--primary-bg)'" onmouseout="this.style.background='transparent'">
+                       <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; padding: 10px;">
+                          <span style="color: var(--primary); font-weight: 600;">#TRX-899</span><span>Walk-in</span><span>Yesterday, 18:40</span><strong style="text-align: right;">$12.00</strong>
+                       </div>
+                    </a>
+                    <a href="transaction-detail.html" style="text-decoration: none; color: inherit; display: block; border-bottom: 1px solid var(--border); transition: background var(--t);" onmouseover="this.style.background='var(--primary-bg)'" onmouseout="this.style.background='transparent'">
+                       <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; padding: 10px;">
+                          <span style="color: var(--primary); font-weight: 600;">#TRX-898</span><span>Alan Turing</span><span>Yesterday, 14:20</span><strong style="text-align: right;">$34.00</strong>
+                       </div>
+                    </a>
+                 </div>
+              </section>
+           </div>
+
+           <div class="cashier-right">
+              <!-- Top Selling Products -->
+              <section class="card" style="padding: 24px;">
+                 <h3 style="font-size: 1.1rem;">Top Selling Products</h3>
+                 <div class="summary-lines" style="margin-top: 16px;">
+                    <div><span>Beer Soda</span><strong>1.6K sales</strong></div>
+                    <div><span>Carbonated Drink</span><strong>4K sales</strong></div>
+                    <div><span>Popcorn 300g</span><strong>5.2K sales</strong></div>
+                 </div>
+              </section>
+              
+              <!-- Sales by Type -->
+              <section class="card" style="padding: 24px; margin-top: 20px;">
+                 <h3 style="font-size: 1.1rem;">Sales by Category</h3>
+                 <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px;">
+                    <div>
+                       <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
+                          <span style="color: var(--text-secondary); font-weight: 600;">Consumables</span><strong>65%</strong>
+                       </div>
+                       <div style="height: 8px; background: var(--surface-alt); width: 100%; border-radius: var(--radius-xl);">
+                          <div style="height: 100%; background: var(--success); width: 65%; border-radius: var(--radius-xl);"></div>
+                       </div>
+                    </div>
+                    <div>
+                       <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
+                          <span style="color: var(--text-secondary); font-weight: 600;">Subscriptions</span><strong>25%</strong>
+                       </div>
+                       <div style="height: 8px; background: var(--surface-alt); width: 100%; border-radius: var(--radius-xl);">
+                          <div style="height: 100%; background: #3b82f6; width: 25%; border-radius: var(--radius-xl);"></div>
+                       </div>
+                    </div>
+                    <div>
+                       <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
+                          <span style="color: var(--text-secondary); font-weight: 600;">Rents</span><strong>10%</strong>
+                       </div>
+                       <div style="height: 8px; background: var(--surface-alt); width: 100%; border-radius: var(--radius-xl);">
+                          <div style="height: 100%; background: #f59e0b; width: 10%; border-radius: var(--radius-xl);"></div>
+                       </div>
+                    </div>
+                 </div>
+              </section>
+           </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-bar">
+      <div class="footer-section">
+        <p class="footer-title">Contacts</p>
+        <p>Phone: <a href="tel:+573124590501"><strong>+57 3124590501</strong></a></p>
+        <p>Email: <a href="mailto:email-example@gmail.com"><strong>email-example@gmail.com</strong></a></p>
+        <p>Twitter: <a href="https://twitter.com/amapola-example" target="_blank"><strong>@amapola-example</strong></a></p>
+      </div>
+      <div class="footer-section">
+        <p class="footer-title">Development</p>
+        <p>GitHub: <a href="https://github.com/AmpolStack/jobby-repo" target="_blank"><strong>AmpolStack/jobby-repo.git</strong></a></p>
+        <p>Docs: <a href="https://notion.com/slides/jobbydocs" target="_blank"><strong>notion.com/slides/jobbydocs</strong></a></p>
+        <p class="footer-powered">Powered by @Amapola</p>
+      </div>
+    </footer>
+  </div>
+
+  <div class="sidebar-backdrop hidden" id="sidebar-backdrop"></div>
+  <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobby ERP - Create Owner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/brand.css">
+</head>
+
+<body style="background: var(--surface); display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 40px 20px;">
+
+  <div class="card" style="width: 100%; max-width: 480px; padding: 40px; box-shadow: var(--shadow-lg);">
+    <div style="text-align: center; margin-bottom: 30px;">
+       <div class="logo-mark" style="width: 48px; height: 48px; font-size: 1.5rem; margin: 0 auto 12px; background: var(--primary); color: white;">J</div>
+       <h1 style="font-size: 1.8rem; letter-spacing: -0.03em; color: var(--text);">Create your Account</h1>
+       <p style="color: var(--muted); font-size: 0.95rem; margin-top: 6px;">Setup your owner profile to get started</p>
+    </div>
+
+    <form style="display: flex; flex-direction: column; gap: 16px; text-align: left;" onsubmit="event.preventDefault(); window.location.href='home.html';">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-firstname">First Name</label>
+          <input type="text" id="reg-firstname" class="brand-input" placeholder="e.g. Alan" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-lastname">Last Name</label>
+          <input type="text" id="reg-lastname" class="brand-input" placeholder="e.g. Turing" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="reg-email">Email Address</label>
+        <input type="email" id="reg-email" class="brand-input" placeholder="name@company.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-phone">Phone Number</label>
+        <input type="tel" id="reg-phone" class="brand-input" placeholder="+1 234 567 890" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password" id="reg-password" class="brand-input" placeholder="••••••••" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-confirm">Confirm Password</label>
+          <input type="password" id="reg-confirm" class="brand-input" placeholder="••••••••" required>
+        </div>
+      </div>
+      
+      <button type="submit" class="cta" style="width: 100%; justify-content: center; margin-top: 10px; padding: 12px; font-size: 1rem;">Create Owner</button>
+    </form>
+
+    <div style="text-align: center; margin-top: 30px; font-size: 0.9rem; color: var(--text-secondary);">
+       Already have an account? <a href="../index.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">Sign In</a>
+    </div>
+  </div>
+
+</body>
+</html>

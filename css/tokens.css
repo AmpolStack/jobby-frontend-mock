@@ -1,0 +1,51 @@
+/* ═══════════════════════════════════════════════════════════════
+   JOBBY — Design System v2 · Design tokens
+   Debe enlazarse ANTES de styles.css y brand.css en todas las páginas.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Marca ── */
+  --jb-primary: #6D28F9;          /* violeta principal: gráficos, botones, activos */
+  --jb-primary-hover: #5B21F0;    /* hover de botones y pills activas */
+  --jb-primary-soft: #F3F0FF;     /* fondos de iconos KPI, chips lavanda */
+  --jb-primary-border: #E9E4F5;   /* borde sutil de tarjetas sobre fondo lavanda */
+
+  /* ── Neutrales ── */
+  --jb-bg: #FFFFFF;               /* fondo del área de contenido */
+  --jb-bg-soft: #F4F4F8;          /* fondo de la búsqueda y chips neutros */
+  --jb-sidebar-bg: #0D0D1F;       /* fondo del sidebar oscuro */
+  --jb-sidebar-text: #FFFFFF;
+  --jb-sidebar-muted: #9CA3AF;    /* sub-items y metadatos del sidebar */
+  --jb-sidebar-active: #6D28F9;   /* pill del ítem activo del menú */
+  --jb-text: #111827;             /* texto principal */
+  --jb-text-2: #6B7280;           /* texto secundario */
+  --jb-text-3: #9CA3AF;           /* texto terciario / placeholders */
+  --jb-border: #ECECF4;           /* bordes de tarjetas y divisores */
+
+  /* ── Semánticos (badges de estado DIAN) ── */
+  --jb-success: #16A34A;   --jb-success-bg: #DCFCE7;   --jb-success-text: #15803D;
+  --jb-info: #4F46E5;      --jb-info-bg: #E0E7FF;      --jb-info-text: #4338CA;
+  --jb-danger: #DC2626;    --jb-danger-bg: #FEE2E2;    --jb-danger-text: #B91C1C;
+  --jb-warning: #D97706;   --jb-warning-bg: #FEF3C7;   --jb-warning-text: #92400E;
+  --jb-gray-bg: #F3F4F6;   --jb-gray-text: #4B5563;
+
+  /* ── Tipografía ── */
+  --jb-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --jb-font-heading: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+
+  /* ── Radios (el diseño v2 SÍ usa radios) ── */
+  --jb-radius-card: 16px;
+  --jb-radius-pill: 10px;
+  --jb-radius-badge: 6px;
+  --jb-radius-sm: 8px;
+
+  /* ── Sombras suaves ── */
+  --jb-shadow-card: 0 1px 3px rgba(17, 17, 46, 0.06);
+  --jb-shadow-hover: 0 8px 24px rgba(109, 40, 249, 0.10);
+  --jb-shadow-pill: 0 4px 14px rgba(109, 40, 249, 0.25);
+
+  /* ── Layout ── */
+  --jb-sidebar-w: 230px;
+  --jb-topbar-h: 68px;
+  --jb-gap: 24px;
+  --jb-transition: 0.2s ease;
+}

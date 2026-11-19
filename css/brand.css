@@ -1,68 +1,54 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   JOBBY — Brand System / Skill de Branding
-   ═══════════════════════════════════════════════════════════════════════════
-   
-   Propósito de la aplicación:
-   ERP de facturación electrónica para PYMES. Busca ser altamente intuitivo,
-   eliminando la fricción visual para que el usuario pueda operar caja, 
-   gestionar productos, empleados y espacios desde una vista clara y directa.
-   
-   Filosofía de diseño:
-   - Marcado / Bold: identidad visual fuerte con color primario violeta profundo
-   - Sin bordes radius (0px en todo): estilo industrial, directo, sin concesiones
-   - Tipografía limpia (Inter + Outfit) con pesos fuertes (700, 800)
-   - Sombras sutiles con tinte primario para profundidad sin curvas
-   - Accesibilidad como prioridad: contraste, foco visible, motion preferido
-   
-   Necesidades de branding:
-   1. Consistencia cromática absoluta (un solo primario, una sola familia)
-   2. Zero border-radius: cada esquina debe ser 0px, sin excepciones
-   3. Teselado visual: sombras, bordes y espaciados siguen una escala fija
-   4. Accesibilidad WCAG AA: ratio de contraste, focus-visible, reduced-motion
-   5. Sistema de diseño atómico: tokens → componentes → páginas
-   
+   JOBBY — Brand System v2
+
+   Propósito: ERP de facturación electrónica para PYMES. Interfaz intuitiva
+   para operar caja, productos, empleados y espacios desde una vista clara.
+
+   Filosofía v2: sidebar oscuro (#0D0D1F), acento violeta vivo (#6D28F9),
+   tarjetas con radio de 16px, sombras suaves y esquema híbrido claro-oscuro.
+   Los valores viven en tokens.css (enlazado antes que este archivo).
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── DESIGN TOKENS ────────────────────────────────────────────────────────── */
+/* ── DESIGN TOKENS (alias de marca → v2) ─────────────────────────────────── */
 :root {
-  /* ★ Brand — Primary palette */
-  --brand-primary: #4328B1;
-  --brand-primary-hover: #3720a0;
-  --brand-primary-light: #6c51d4;
-  --brand-primary-bg: #ede9fb;
-  --brand-primary-muted: rgba(67, 40, 177, 0.08);
+  /* Brand */
+  --brand-primary: var(--jb-primary);
+  --brand-primary-hover: var(--jb-primary-hover);
+  --brand-primary-light: var(--jb-primary);
+  --brand-primary-bg: var(--jb-primary-soft);
+  --brand-primary-muted: rgba(109, 40, 249, 0.08);
   --brand-primary-text: #ffffff;
 
-  /* ★ Brand — Secondary accent */
-  --brand-accent: #f59e0b;
-  --brand-accent-bg: #fef3c7;
+  /* Secondary accent */
+  --brand-accent: var(--jb-primary);
+  --brand-accent-bg: var(--jb-primary-soft);
 
-  /* ★ Semantic colors (Contrast Optimized) */
-  --brand-success: #166534;
-  --brand-success-bg: #f0fdf4;
-  --brand-danger: #991b1b;
-  --brand-danger-bg: #fef2f2;
-  --brand-warning: #92400e;
-  --brand-warning-bg: #fffbeb;
-  --brand-info: #1e40af;
-  --brand-info-bg: #eff6ff;
+  /* Semantic */
+  --brand-success: var(--jb-success);
+  --brand-success-bg: var(--jb-success-bg);
+  --brand-danger: var(--jb-danger);
+  --brand-danger-bg: var(--jb-danger-bg);
+  --brand-warning: var(--jb-warning);
+  --brand-warning-bg: var(--jb-warning-bg);
+  --brand-info: var(--jb-info);
+  --brand-info-bg: var(--jb-info-bg);
 
-  /* ★ Neutral scale */
-  --brand-bg: #ffffff;
-  --brand-surface: #f5f5f7;
-  --brand-surface-alt: #ebebed;
-  --brand-text: #1a1a2e;
-  --brand-text-secondary: #222233;
-  --brand-text-muted: #333344;
-  --brand-border: #e0e0ea;
-  --brand-border-strong: #c4c4d4;
+  /* Neutral scale */
+  --brand-bg: var(--jb-bg);
+  --brand-surface: var(--jb-bg-soft);
+  --brand-surface-alt: var(--jb-border);
+  --brand-text: var(--jb-text);
+  --brand-text-secondary: var(--jb-text-2);
+  --brand-text-muted: var(--jb-text-2);
+  --brand-border: var(--jb-border);
+  --brand-border-strong: var(--jb-primary-border);
 
-  /* ★ Typography */
-  --brand-font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --brand-font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+  /* Typography */
+  --brand-font-body: var(--jb-font-body);
+  --brand-font-heading: var(--jb-font-heading);
   --brand-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* ★ Type scale */
+  /* Type scale */
   --text-xs: 0.7rem;
   --text-sm: 0.78rem;
   --text-base: 0.88rem;
@@ -72,14 +58,14 @@
   --text-2xl: 1.8rem;
   --text-3xl: 2.4rem;
 
-  /* ★ Font weights */
+  /* Font weights */
   --weight-normal: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
   --weight-extrabold: 800;
 
-  /* ★ Spacing scale (4px base) */
+  /* Spacing scale (4px base) */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -90,21 +76,25 @@
   --space-10: 40px;
   --space-12: 48px;
 
-  /* ★ Border — always 0px (flat / sharp) */
+  /* Radii v2 */
   --radius-none: 0px;
+  --radius-card: var(--jb-radius-card);
+  --radius-pill: var(--jb-radius-pill);
+  --radius-badge: var(--jb-radius-badge);
+  --radius-sm: var(--jb-radius-sm);
 
-  /* ★ Border widths */
+  /* Border widths */
   --border-thin: 1px;
-  --border-thick: 2px;
+  --border-thick: 1px;
 
-  /* ★ Shadows — always rectangular, no blur diffusion */
-  --shadow-sm: 0 1px 4px rgba(67, 40, 177, 0.06);
-  --shadow-md: 0 2px 12px rgba(67, 40, 177, 0.10);
-  --shadow-lg: 0 8px 32px rgba(67, 40, 177, 0.15);
-  --shadow-success: 0 8px 28px rgba(22, 163, 74, 0.28);
-  --shadow-danger: 0 8px 28px rgba(220, 38, 38, 0.28);
+  /* Shadows suaves */
+  --shadow-sm: var(--jb-shadow-card);
+  --shadow-md: var(--jb-shadow-card);
+  --shadow-lg: var(--jb-shadow-hover);
+  --shadow-success: 0 8px 24px rgba(22, 163, 74, 0.20);
+  --shadow-danger: 0 8px 24px rgba(220, 38, 38, 0.20);
 
-  /* ★ Elevation / z-index scale */
+  /* Elevation / z-index */
   --z-sidebar: 200;
   --z-backdrop: 150;
   --z-topbar: 100;
@@ -112,184 +102,153 @@
   --z-toast: 999;
   --z-progress: 1000;
 
-  /* ★ Layout dimensions */
-  --sidebar-width: 236px;
-  --topbar-height: 60px;
+  /* Layout */
+  --sidebar-width: var(--jb-sidebar-w);
+  --topbar-height: var(--jb-topbar-h);
   --content-max-width: 1120px;
 
-  /* ★ Transitions */
+  /* Transitions */
   --transition-fast: 0.16s ease;
-  --transition-base: 0.22s ease;
+  --transition-base: var(--jb-transition);
   --transition-slow: 0.3s ease;
   --transition-bounce: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  /* ★ Focus ring — rectangular, no radius */
-  --focus-ring: 0 0 0 3px rgba(67, 40, 177, 0.35);
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(109, 40, 249, 0.28);
 }
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   GLOBAL RESET — Sharp / Flat / Accessible
+   GLOBAL RESET
    ═══════════════════════════════════════════════════════════════════════════ */
-
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-  border-radius: 0 !important;  /* Brand mandate: zero radius everywhere */
-}
+*::after { box-sizing: border-box; }
 
-/* ── Focus visibility (accesibilidad) ───────────────────────────────────── */
 :focus-visible {
-  outline: 3px solid var(--brand-primary);
+  outline: 3px solid var(--jb-primary);
   outline-offset: 2px;
 }
-:focus:not(:focus-visible) {
-  outline: none;
-}
+:focus:not(:focus-visible) { outline: none; }
 
-/* ── Reduced motion (accesibilidad) ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-/* ── Selection ──────────────────────────────────────────────────────────── */
-::selection {
-  background: var(--brand-primary);
-  color: var(--brand-primary-text);
-}
+::selection { background: var(--jb-primary); color: #fff; }
 
-/* ── Scrollbar ──────────────────────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--brand-surface);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--brand-border-strong);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--brand-text-muted);
-}
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: var(--jb-bg-soft); }
+::-webkit-scrollbar-thumb { background: var(--jb-primary-border); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--jb-primary); }
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   TYPOGRAPHY — Brand type system
+   TYPOGRAPHY
    ═══════════════════════════════════════════════════════════════════════════ */
-
 .brand-heading {
-  font-family: var(--brand-font-heading);
-  font-weight: var(--weight-extrabold);
+  font-family: var(--jb-font-heading);
+  font-weight: var(--weight-bold);
   letter-spacing: -0.03em;
-  color: var(--brand-text);
+  color: var(--jb-text);
 }
 
 .brand-body {
-  font-family: var(--brand-font-body);
+  font-family: var(--jb-font-body);
   font-weight: var(--weight-normal);
-  color: var(--brand-text-secondary);
+  color: var(--jb-text-2);
   line-height: 1.6;
 }
 
 .brand-label {
-  font-family: var(--brand-font-body);
+  font-family: var(--jb-font-body);
   font-size: var(--text-xs);
   font-weight: var(--weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  color: var(--brand-text-muted);
+  color: var(--jb-text-2);
 }
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   COMPONENT TOKENS — Brand-prescribed button / card / input styles
+   COMPONENT TOKENS
    ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── CTA button (filled primary) ────────────────────────────────────────── */
 .brand-cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2);
-  background: var(--brand-primary);
-  color: var(--brand-primary-text);
-  font-family: var(--brand-font-body);
+  background: var(--jb-primary);
+  color: #fff;
+  font-family: var(--jb-font-body);
   font-weight: var(--weight-bold);
   font-size: var(--text-base);
   padding: 10px 20px;
-  border: var(--border-thick) solid var(--brand-primary);
+  border: 1px solid var(--jb-primary);
+  border-radius: var(--jb-radius-pill);
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  transition: background var(--jb-transition), box-shadow var(--jb-transition);
 }
 .brand-cta:hover {
-  background: var(--brand-bg);
-  color: var(--brand-primary);
-  border-color: var(--brand-primary);
+  background: var(--jb-primary-hover);
+  border-color: var(--jb-primary-hover);
+  box-shadow: var(--jb-shadow-pill);
 }
-.brand-cta:focus-visible {
-  outline: 3px solid var(--brand-primary);
-  outline-offset: 2px;
-}
+.brand-cta:focus-visible { outline: 3px solid var(--jb-primary); outline-offset: 2px; }
 
-/* ── Ghost action (light primary bg) ────────────────────────────────────── */
 .brand-ghost {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--brand-primary-bg);
-  color: var(--brand-primary);
-  font-weight: var(--weight-bold);
+  background: transparent;
+  color: var(--jb-text-2);
+  font-weight: var(--weight-semibold);
   font-size: var(--text-base);
   padding: 8px 14px;
-  border: var(--border-thick) solid var(--brand-primary-bg);
+  border: 1px solid var(--jb-border);
+  border-radius: var(--jb-radius-sm);
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  transition: background var(--jb-transition), color var(--jb-transition), border-color var(--jb-transition);
 }
 .brand-ghost:hover {
-  background: var(--brand-primary);
-  color: var(--brand-primary-text);
-  border-color: var(--brand-primary);
+  background: var(--jb-primary-soft);
+  color: var(--jb-primary);
+  border-color: var(--jb-primary-border);
 }
 
-/* ── Card ───────────────────────────────────────────────────────────────── */
 .brand-card {
-  background: var(--brand-surface);
-  border: var(--border-thin) solid var(--brand-border);
+  background: var(--jb-bg);
+  border: 1px solid var(--jb-border);
+  border-radius: var(--jb-radius-card);
+  box-shadow: var(--jb-shadow-card);
 }
 
-/* ── Input ──────────────────────────────────────────────────────────────── */
 .brand-input {
   width: 100%;
   padding: 12px 14px;
-  background: var(--brand-surface);
-  border: var(--border-thin) solid var(--brand-border);
+  background: var(--jb-bg);
+  border: 1px solid var(--jb-border);
+  border-radius: var(--jb-radius-sm);
   font-family: inherit;
   font-size: var(--text-base);
-  color: var(--brand-text);
-  transition: border-color var(--transition-fast), background var(--transition-fast);
+  color: var(--jb-text);
+  transition: border-color var(--jb-transition), box-shadow var(--jb-transition);
 }
 .brand-input:focus {
   outline: none;
-  border-color: var(--brand-primary);
-  background: var(--brand-bg);
+  border-color: var(--jb-primary);
+  box-shadow: var(--focus-ring);
 }
-.brand-input::placeholder {
-  color: var(--brand-text-muted);
-}
+.brand-input::placeholder { color: var(--jb-text-3); }
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
    ACCESSIBILITY UTILITIES
    ═══════════════════════════════════════════════════════════════════════════ */
-
-/* Screen-reader only */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -302,47 +261,46 @@
   border: 0;
 }
 
-/* Skip to content (hidden until focused) */
 .skip-link {
   position: absolute;
   top: -100%;
   left: 0;
   z-index: 10000;
   padding: 12px 20px;
-  background: var(--brand-primary);
-  color: var(--brand-primary-text);
-  font-family: var(--brand-font-body);
+  background: var(--jb-primary);
+  color: #fff;
+  font-family: var(--jb-font-body);
   font-weight: var(--weight-bold);
   font-size: var(--text-base);
   text-decoration: none;
+  border-radius: var(--jb-radius-sm);
 }
 .skip-link:focus {
   top: 0;
-  outline: 3px solid var(--brand-accent);
+  outline: 3px solid var(--jb-primary);
   outline-offset: 2px;
 }
 
-/* High contrast focus indicator for all interactive elements */
 [tabindex]:focus-visible,
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid var(--brand-primary);
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--jb-primary);
   outline-offset: 2px;
 }
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   BRAND ICONS — Replace any circular icon with square equivalent
+   BRAND ICONS
    ═══════════════════════════════════════════════════════════════════════════ */
-
-/* Square search icon (replaces circular magnifying glass) */
 .brand-search-icon {
   width: 17px;
   height: 17px;
-  border: 2px solid var(--brand-text-muted);
+  border: 2px solid var(--jb-text-2);
+  border-radius: 50%;
   position: relative;
   flex-shrink: 0;
 }
@@ -351,8 +309,9 @@ textarea:focus-visible {
   position: absolute;
   width: 7px;
   height: 2px;
-  background: var(--brand-text-muted);
+  background: var(--jb-text-2);
   right: -5px;
   bottom: -1px;
   transform: rotate(45deg);
+  border-radius: 2px;
 }

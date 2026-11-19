@@ -15,6 +15,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/brand.css">
 </head>
@@ -30,104 +32,113 @@
   <!-- Success toast -->
   <aside id="toast" aria-label="Notificaciones" aria-live="polite">
     <span class="toast-icon">✓</span>
-    <span id="toast-message">Done!</span>
+    <span id="toast-message">Listo</span>
   </aside>
 
   <!-- Bottom Progress bar -->
   <div id="progress-bar-bottom"></div>
 
   <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
-  <aside class="sidebar" id="sidebar">
+  <aside class="sidebar" id="sidebar" aria-label="Navegación lateral">
     <div class="sidebar-brand">
-      <span class="logo-mark">J</span>
-      <span>JOBBY</span>
+      <span class="brand-blob" aria-hidden="true">J</span>
+      <span class="brand-wordmark">jobby</span>
     </div>
     <nav class="sidebar-nav" role="navigation" aria-label="Navegación principal">
-      <a href="home.html" class="menu-item active">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7" rx="1" />
-          <rect x="14" y="3" width="7" height="7" rx="1" />
-          <rect x="3" y="14" width="7" height="7" rx="1" />
-          <rect x="14" y="14" width="7" height="7" rx="1" />
-        </svg>
-        Home
-      </a>
-      <a href="sectionals.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-        Sectionals
-      </a>
-      <a href="employees.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 00-3-3.87" />
-          <path d="M16 3.13a4 4 0 010 7.75" />
-        </svg>
-        Employees
-      </a>
-      <a href="products.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <path d="M16 10a4 4 0 01-8 0" />
-        </svg>
-        Products
-      </a>
-      <a href="cashier.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="1" y="4" width="22" height="16" rx="2" />
-          <line x1="1" y1="10" x2="23" y2="10" />
-        </svg>
-        Cashier
-      </a>
-      <a href="clients.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-        Clients
-      </a>
-      <a href="sales.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-        </svg>
-        Sales Record
-      </a>
-      <a href="subscriptions.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-        </svg>
-        Subscriptions & Rents
-      </a>
+      <a href="home.html" class="menu-item active" aria-current="page"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Inicio</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="9 18 15 12 9 6"/></svg></a>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Facturación</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Crear factura</a>
+          <a href="transaction-detail.html" class="">Consultar DIAN</a>
+          <a href="transaction-detail.html" class="">Documentos electrónicos</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Lotes de facturación</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Clientes</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="clients.html" class="">Clientes</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Listas de precios</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>Inventario</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="products.html" class="">Productos</a>
+          <a href="products.html" class="">Stock</a>
+          <a href="sectionals.html" class="">Movimientos</a>
+        </div>
+      </details>
+      <a href="subscriptions.html" class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span>Compras</span></a>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span>Ventas</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="cashier.html" class="">Caja</a>
+          <a href="sales.html" class="">Registro de ventas</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg><span>Reportes</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Financieros</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Ventas</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Inventario</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Personalizados</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Configuración</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="sectionals.html" class="">Organización</a>
+          <a href="employees.html" class="">Usuarios</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Permisos</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Integraciones</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Arquitectura</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="architecture.html#comparacion" class="">AS-IS / TO-BE</a>
+          <a href="architecture.html#roadmap" class="">Hoja de ruta</a>
+        </div>
+      </details>
     </nav>
+    <div class="sidebar-footer">
+      <span class="brand-blob" aria-hidden="true">J</span>
+      <span class="sidebar-footer-copy"><strong>Empresa S.A.S.</strong><span>NIT 900.123.456-7</span></span>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-chevron"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </aside>
 
-    </aside>
 
   <!-- ── MAIN LAYOUT ──────────────────────────────────────────── -->
   <div class="app-layout">
 
     <!-- TOP BAR -->
     <header class="topbar" role="banner" aria-label="Barra superior">
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menú de navegación" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <strong class="topbar-brand" id="nav-business">JOBBY</strong>
-      <a href="profile.html" class="topbar-right" >
-        <span class="topbar-user">Founder Username</span>
-        <img class="topbar-avatar"
-          src="https://ui-avatars.com/api/?name=Founder+Username&background=020617&color=fff&size=128" alt="Avatar">
-      </a>
+      <strong class="topbar-context" id="nav-business">JOBBY</strong>
+      <label class="topbar-search" for="global-search">
+        <span class="brand-search-icon" aria-hidden="true"></span>
+        <input type="search" id="global-search" placeholder="Buscar en Jobby..." aria-label="Buscar en Jobby">
+        <span class="kbd" aria-hidden="true">Ctrl + K</span>
+      </label>
+      <div class="topbar-actions">
+        <button class="notification-btn" type="button" aria-label="Notificaciones, 1 sin leer">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot" aria-hidden="true"></span>
+        </button>
+        <a href="profile.html" class="topbar-right" aria-label="Perfil de Juan Díaz, administrador">
+          <span class="topbar-user-wrap">
+            <span class="topbar-user">Juan Díaz</span>
+            <span class="topbar-role">Administrador</span>
+          </span>
+          <span class="topbar-avatar" aria-hidden="true">JD</span>
+        </a>
+      </div>
     </header>
 
     <!-- CONTENT -->
@@ -137,146 +148,322 @@
       <section class="screen active" id="board-screen">
         <div class="page-hero">
           <div>
-            <h1>Your Businesess</h1>
-            <p class="lead">Manage spaces, staff, products and cash register from a single clear view.</p>
+            <h1>Tus negocios</h1>
+            <p class="lead">Gestiona espacios, personal, productos y caja desde una sola vista clara.</p>
           </div>
         </div>
-
         <div class="section-actions">
-          <button class="cta" id="add-business-btn">
-            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-            Add new Business
+          <button class="cta" id="add-business-btn" type="button">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Agregar negocio
           </button>
         </div>
-
         <div class="business-grid">
           <article class="business-card">
-            <img class="business-illustration orange" src="https://placehold.co/400x300/f97316/ffffff?text=Marketly"
-              alt="Marketly">
+            <img class="business-illustration orange" src="https://placehold.co/400x300/6D28F9/ffffff?text=Marketly" alt="Ilustración del negocio Jobby-marketly">
             <div class="business-copy">
               <h2>Jobby-marketly</h2>
               <p>Tienda principal con operaciones diarias, ventas y control de personal.</p>
-              <button class="ghost-action enter-business">Go to Business →</button>
+              <button class="ghost-action enter-business" type="button">Ir al negocio →</button>
             </div>
           </article>
-
           <article class="business-card">
-            <img class="business-illustration blue" src="https://placehold.co/400x300/3b82f6/ffffff?text=Marketfy"
-              alt="Marketfy">
+            <img class="business-illustration blue" src="https://placehold.co/400x300/5B21F0/ffffff?text=Marketfy" alt="Ilustración del negocio Jobby-marketfy">
             <div class="business-copy">
               <h2>Jobby-marketfy</h2>
               <p>Unidad secundaria para pruebas de catálogo y validación de campañas.</p>
-              <button class="ghost-action enter-business">Go to Business →</button>
+              <button class="ghost-action enter-business" type="button">Ir al negocio →</button>
             </div>
           </article>
-
           <article class="business-card">
-            <img class="business-illustration teal" src="https://placehold.co/400x300/14b8a6/ffffff?text=Market-up"
-              alt="Market-up">
+            <img class="business-illustration teal" src="https://placehold.co/400x300/8B5CF6/ffffff?text=Market-up" alt="Ilustración del negocio Jobby-market-up">
             <div class="business-copy">
               <h2>Jobby-market-up</h2>
               <p>Espacio dedicado a nuevos servicios, rentas y experiencias premium.</p>
-              <button class="ghost-action enter-business">Go to Business →</button>
+              <button class="ghost-action enter-business" type="button">Ir al negocio →</button>
             </div>
           </article>
         </div>
       </section>
 
-      <!-- SCREEN: HOME (Business Dashboard) ─────────────────── -->
+      <!-- SCREEN: DASHBOARD ──────────────────────────────────── -->
       <section class="screen" id="home-screen">
-        <div class="business-banner">
-          <img class="business-banner-art" src="https://placehold.co/1200x300/0f172a/ffffff?text=Jobby+Marketly+Cover"
-            alt="Banner">
-        </div>
-
-        <div class="dashboard-grid">
-          <!-- Left column -->
-          <div class="dashboard-main">
-            <div class="panel-header">
-              <div>
-                <p class="section-label">Business Name</p>
-                <h1>Jobby-marketly</h1>
-              </div>
-              <button class="ghost-action">EDIT</button>
-            </div>
-
-            <div class="details-grid">
-              <div class="details-main">
-                <p class="section-label">Description</p>
-                <p class="body-copy">
-                  Plataforma pensada para una PYME que necesita facturar, controlar productos,
-                  monitorear su equipo y operar caja con menos fricción visual.
-                </p>
-                <p class="since">since 10/03/2025</p>
-              </div>
-              <div class="details-side">
-                <div>
-                  <p class="section-label">Country</p>
-                  <strong>Colombia</strong>
-                </div>
-                <div>
-                  <p class="section-label">City</p>
-                  <strong>Bogotá</strong>
-                </div>
-                <div>
-                  <p class="section-label">Social Networks</p>
-                  <strong>Instagram · Twitter</strong>
-                </div>
-                <div>
-                  <p class="section-label">Contacts</p>
-                  <strong>hello@jobby.app</strong>
-                </div>
-              </div>
-            </div>
-
-            <section class="stats-card">
-              <h2 id="stats-title">General Business Stats</h2>
-              <div class="stats-grid">
-                <div><span>Total Sales</span><strong>43K</strong></div>
-                <div><span>Sales With Jobby Shop</span><strong>43K</strong></div>
-                <div><span>Locals</span><strong>4</strong></div>
-                <div><span>Products</span><strong>102</strong></div>
-                <div><span>Employees</span><strong>102</strong></div>
-              </div>
-              <div class="metric-block">
-                <button class="dropdown">In Week</button>
-                <div class="metric-details">
-                  <div><span>Sales in Last</span><strong>224</strong></div>
-                  <div><span>Sales With Jobby Shop</span><strong>112</strong></div>
-                  <div><span>Average Sales</span><strong>201</strong></div>
-                  <div><span>Average Sales With Jobby Shop</span><strong>101</strong></div>
-                  <div><span>Current Sales</span><strong>112</strong></div>
-                  <div><span>Current Sales With Jobby Shop</span><strong>80</strong></div>
-                </div>
-                <button class="dropdown">In Month</button>
-                <button class="dropdown">In Year</button>
-              </div>
-            </section>
+        <div class="dash-hero">
+          <div>
+            <p class="dash-hello">Bienvenido,</p>
+            <h1 class="dash-name">Juan Díaz</h1>
+            <p class="dash-sub">Aquí tienes un resumen de la actividad de tu empresa.</p>
+            <p class="dash-date">
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Hoy, 30 de abril de 2025
+            </p>
+            <a class="dash-link" href="architecture.html">Ver arquitectura del proceso →</a>
+          </div>
+          <div class="dash-hero-right">
+            <svg class="dash-blob" viewBox="0 0 160 160" aria-hidden="true">
+              <defs><linearGradient id="hero-blob" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A78BFA"/><stop offset="100%" stop-color="#6D28F9"/></linearGradient></defs>
+              <path fill="url(#hero-blob)" opacity="0.95" d="M126 40c14 15 20 39 11 60-9 22-33 41-57 45-25 4-51-6-64-26C4 99 4 70 18 49 32 28 56 14 82 11c26-3 30 14 44 29z"/>
+              <path fill="#F3F0FF" opacity="0.55" d="M112 58c9 11 11 26 5 39-7 14-22 25-37 27-15 3-31-3-39-15-8-12-8-28 0-40 8-13 23-21 38-23 15-2 24 2 33 12z"/>
+              <circle cx="80" cy="82" r="18" fill="#fff" opacity="0.85"/>
+            </svg>
+            <a class="company-chip" href="sectionals.html" aria-label="Empresa S.A.S., NIT 900.123.456-7">
+              <span class="company-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+              <span><strong>Empresa S.A.S.</strong><small>NIT 900.123.456-7</small></span>
+              <svg class="footer-chevron" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
           </div>
         </div>
-      </section>
 
+        <div class="kpi-grid">
+        <article class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l3 3 7-7"/><path d="M9 17h9v9H3v-9h9"/></svg></span>
+            <span class="kpi-delta">▲ +12%</span>
+          </div>
+          <p class="kpi-title">Ventas</p>
+          <p class="kpi-value">$ 24.580.000</p>
+          <p class="kpi-meta">vs. mes anterior</p>
+                      <svg class="sparkline" viewBox="0 0 100 42" preserveAspectRatio="none" role="img" aria-label="Tendencia de Ventas en los últimos 7 días">
+              <defs><linearGradient id="spark-0" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6D28F9" stop-opacity="0.30"/><stop offset="100%" stop-color="#6D28F9" stop-opacity="0"/>
+              </linearGradient></defs>
+              <path d="M 0 34 L 14 30 L 28 32 L 42 22 L 56 26 L 70 16 L 85 20 L 100 9 L 100 42 L 0 42 Z" fill="url(#spark-0)"/>
+              <path d="M 0 34 L 14 30 L 28 32 L 42 22 L 56 26 L 70 16 L 85 20 L 100 9" fill="none" stroke="#6D28F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+            </svg>
+        </article>
+        <article class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
+            <span class="kpi-delta">▲ +8%</span>
+          </div>
+          <p class="kpi-title">Compras</p>
+          <p class="kpi-value">$ 12.430.000</p>
+          <p class="kpi-meta">vs. mes anterior</p>
+                      <svg class="sparkline" viewBox="0 0 100 42" preserveAspectRatio="none" role="img" aria-label="Tendencia de Compras en los últimos 7 días">
+              <defs><linearGradient id="spark-1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6D28F9" stop-opacity="0.30"/><stop offset="100%" stop-color="#6D28F9" stop-opacity="0"/>
+              </linearGradient></defs>
+              <path d="M 0 30 L 14 32 L 28 24 L 42 28 L 56 18 L 70 22 L 85 14 L 100 12 L 100 42 L 0 42 Z" fill="url(#spark-1)"/>
+              <path d="M 0 30 L 14 32 L 28 24 L 42 28 L 56 18 L 70 22 L 85 14 L 100 12" fill="none" stroke="#6D28F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+            </svg>
+        </article>
+        <article class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+            <span class="kpi-delta">▲ +5%</span>
+          </div>
+          <p class="kpi-title">Facturación electrónica</p>
+          <p class="kpi-value">$ 8.270.000</p>
+          <p class="kpi-meta">vs. mes anterior</p>
+                      <svg class="sparkline" viewBox="0 0 100 42" preserveAspectRatio="none" role="img" aria-label="Tendencia de Facturación electrónica en los últimos 7 días">
+              <defs><linearGradient id="spark-2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6D28F9" stop-opacity="0.30"/><stop offset="100%" stop-color="#6D28F9" stop-opacity="0"/>
+              </linearGradient></defs>
+              <path d="M 0 36 L 14 28 L 28 30 L 42 24 L 56 20 L 70 24 L 85 12 L 100 10 L 100 42 L 0 42 Z" fill="url(#spark-2)"/>
+              <path d="M 0 36 L 14 28 L 28 30 L 42 24 L 56 20 L 70 24 L 85 12 L 100 10" fill="none" stroke="#6D28F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+            </svg>
+        </article>
+        <article class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="kpi-delta">▲ +18%</span>
+          </div>
+          <p class="kpi-title">Clientes activos</p>
+          <p class="kpi-value">342</p>
+          <p class="kpi-meta">vs. mes anterior</p>
+                      <svg class="sparkline" viewBox="0 0 100 42" preserveAspectRatio="none" role="img" aria-label="Tendencia de Clientes activos en los últimos 7 días">
+              <defs><linearGradient id="spark-3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6D28F9" stop-opacity="0.30"/><stop offset="100%" stop-color="#6D28F9" stop-opacity="0"/>
+              </linearGradient></defs>
+              <path d="M 0 38 L 14 34 L 28 36 L 42 28 L 56 24 L 70 26 L 85 16 L 100 8 L 100 42 L 0 42 Z" fill="url(#spark-3)"/>
+              <path d="M 0 38 L 14 34 L 28 36 L 42 28 L 56 24 L 70 26 L 85 16 L 100 8" fill="none" stroke="#6D28F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+            </svg>
+        </article>
+        </div>
+
+        <div class="dash-row">
+          <!-- Gráfico + documentos -->
+          <article class="card dash-panel">
+            <div class="panel-title-row">
+              <h2 class="panel-title">Ventas últimos 7 días</h2>
+              <span class="pill-select">Últimos 7 días <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </div>
+            <div class="chart-wrap">
+              <svg class="line-chart" viewBox="0 0 640 250" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Gráfica de ventas de los últimos 7 días: 24, 25, 26, 27, 28, 29 y 30 de abril, con un máximo de 24.580.000 pesos el 30 de abril">
+                <defs><linearGradient id="sales-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6D28F9" stop-opacity="0.28"/><stop offset="100%" stop-color="#6D28F9" stop-opacity="0"/></linearGradient></defs>
+                <g stroke="#ECECF4" stroke-width="1">
+                  <line x1="50" y1="20" x2="625" y2="20"/><line x1="50" y1="70" x2="625" y2="70"/>
+                  <line x1="50" y1="120" x2="625" y2="120"/><line x1="50" y1="170" x2="625" y2="170"/>
+                  <line x1="50" y1="200" x2="625" y2="200"/>
+                </g>
+                <g fill="#9CA3AF" font-size="11" font-family="Inter, sans-serif">
+                  <text x="4" y="24">$30M</text><text x="4" y="74">$20M</text><text x="4" y="124">$10M</text><text x="12" y="204">$0</text>
+                </g>
+                <path d="M50 168 C 95 158, 120 118, 160 128 S 225 82, 265 98 S 330 58, 372 72 S 440 44, 478 58 S 540 30, 578 42 S 610 24, 623 28 L 623 200 L 50 200 Z" fill="url(#sales-area)"/>
+                <path d="M50 168 C 95 158, 120 118, 160 128 S 225 82, 265 98 S 330 58, 372 72 S 440 44, 478 58 S 540 30, 578 42 S 610 24, 623 28" fill="none" stroke="#6D28F9" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="623" cy="28" r="5" fill="#6D28F9" stroke="#fff" stroke-width="2.5"/>
+                <g fill="#9CA3AF" font-size="11" font-family="Inter, sans-serif" text-anchor="middle">
+                  <text x="66" y="232">24 Abr</text><text x="148" y="232">25 Abr</text><text x="230" y="232">26 Abr</text>
+                  <text x="312" y="232">27 Abr</text><text x="394" y="232">28 Abr</text><text x="476" y="232">29 Abr</text><text x="558" y="232">30 Abr</text>
+                </g>
+              </svg>
+              <span class="chart-tooltip"><span class="tooltip-dot"></span>$ 24.580.000</span>
+            </div>
+            <div class="panel-title-row" style="margin-top: 24px;">
+              <h3 class="panel-title" style="font-size: 0.98rem;">Documentos recientes</h3>
+              <a class="panel-link" href="transaction-detail.html">Ver todos →</a>
+            </div>
+            <div class="table-wrap">
+              <table class="docs-table">
+                <caption class="sr-only">Documentos electrónicos recientes con su estado</caption>
+                <thead><tr><th scope="col">Tipo</th><th scope="col">Número</th><th scope="col">Cliente</th><th scope="col">Fecha</th><th scope="col">Estado</th><th scope="col"><span class="sr-only">Acciones</span></th></tr></thead>
+                <tbody>
+            <tr>
+              <td><span class="doc-type"><span class="doc-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>Factura</span></td>
+              <td><strong>FE-001234</strong></td>
+              <td>Comercializadora Andina</td>
+              <td>30 abr 2025, 10:24</td>
+              <td><span class="badge success">Aceptada</span></td>
+              <td><button class="row-menu" type="button" aria-label="Más acciones para FE-001234">⋯</button></td>
+            </tr>
+            <tr>
+              <td><span class="doc-type"><span class="doc-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>Factura</span></td>
+              <td><strong>FE-001233</strong></td>
+              <td>Distribuciones del Valle</td>
+              <td>30 abr 2025, 09:17</td>
+              <td><span class="badge success">Aceptada</span></td>
+              <td><button class="row-menu" type="button" aria-label="Más acciones para FE-001233">⋯</button></td>
+            </tr>
+            <tr>
+              <td><span class="doc-type"><span class="doc-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>Nota crédito</span></td>
+              <td><strong>NC-000045</strong></td>
+              <td>Soluciones Tech S.A.S.</td>
+              <td>29 abr 2025, 16:32</td>
+              <td><span class="badge info">En proceso</span></td>
+              <td><button class="row-menu" type="button" aria-label="Más acciones para NC-000045">⋯</button></td>
+            </tr>
+            <tr>
+              <td><span class="doc-type"><span class="doc-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>Factura</span></td>
+              <td><strong>FE-001232</strong></td>
+              <td>Grupo Empresarial Norte</td>
+              <td>29 abr 2025, 14:21</td>
+              <td><span class="badge success">Aceptada</span></td>
+              <td><button class="row-menu" type="button" aria-label="Más acciones para FE-001232">⋯</button></td>
+            </tr>
+            <tr>
+              <td><span class="doc-type"><span class="doc-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>Factura</span></td>
+              <td><strong>FE-001231</strong></td>
+              <td>Inversiones Globales</td>
+              <td>29 abr 2025, 11:08</td>
+              <td><span class="badge danger">Rechazada</span></td>
+              <td><button class="row-menu" type="button" aria-label="Más acciones para FE-001231">⋯</button></td>
+            </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Columna central: facturación + acciones -->
+          <div class="dash-stack">
+            <article class="card dash-panel">
+              <div class="panel-title-row"><h2 class="panel-title">Facturación electrónica</h2><a class="panel-link" href="transaction-detail.html">Ver todo →</a></div>
+              <div class="donut-wrap">
+                <div class="donut-holder">
+                  <svg class="donut" viewBox="0 0 150 150" role="img" aria-label="98 % de documentos electrónicos enviados">
+                    <circle cx="75" cy="75" r="58" fill="none" stroke="#ECECF4" stroke-width="13"/>
+                    <circle cx="75" cy="75" r="58" fill="none" stroke="#6D28F9" stroke-width="13" stroke-linecap="round" stroke-dasharray="357 365" transform="rotate(-90 75 75)"/>
+                  </svg>
+                  <span class="donut-center"><strong>98 %</strong><span>Enviado</span></span>
+                </div>
+                <div class="legend">
+                  <div class="legend-row"><span><i class="legend-dot" style="background:#16A34A"></i>Aceptadas</span><strong>372</strong></div>
+                  <div class="legend-row"><span><i class="legend-dot" style="background:#6D28F9"></i>En proceso</span><strong>8</strong></div>
+                  <div class="legend-row"><span><i class="legend-dot" style="background:#DC2626"></i>Rechazadas</span><strong>4</strong></div>
+                  <div class="legend-row"><span><i class="legend-dot" style="background:#9CA3AF"></i>Pendientes</span><strong>2</strong></div>
+                </div>
+              </div>
+              <a class="dash-link" href="architecture.html#tobe">Simular contingencia →</a>
+            </article>
+
+            <article class="card dash-panel">
+              <div class="panel-title-row"><h2 class="panel-title">Acciones rápidas</h2><a class="panel-link" href="home.html">Ver todas →</a></div>
+              <div class="quick-list">
+          <a class="quick-item" href="#">
+            <span class="quick-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+            <span class="quick-copy"><span class="quick-title">Crear factura</span><span class="quick-sub">Genera un nuevo documento</span></span>
+            <svg class="quick-chevron" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a class="quick-item" href="architecture.html#tobe">
+            <span class="quick-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>
+            <span class="quick-copy"><span class="quick-title">Facturación electrónica</span><span class="quick-sub">Envía a la DIAN</span></span>
+            <svg class="quick-chevron" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a class="quick-item" href="products.html">
+            <span class="quick-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>
+            <span class="quick-copy"><span class="quick-title">Registrar producto</span><span class="quick-sub">Añade un nuevo producto</span></span>
+            <svg class="quick-chevron" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a class="quick-item" href="clients.html">
+            <span class="quick-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+            <span class="quick-copy"><span class="quick-title">Clientes</span><span class="quick-sub">Gestiona tu base de clientes</span></span>
+            <svg class="quick-chevron" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- Actividad reciente -->
+          <article class="card dash-panel">
+            <div class="panel-title-row"><h2 class="panel-title">Actividad reciente</h2><a class="panel-link" href="home.html">Ver todas →</a></div>
+            <ul class="timeline">
+            <li class="timeline-item">
+              <span class="timeline-icon " aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>
+              <span class="timeline-copy"><strong>Factura FE-001234</strong><span>Enviada a la DIAN</span></span>
+              <span class="timeline-time">10:24</span>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-icon " aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+              <span class="timeline-copy"><strong>Entrada de inventario</strong><span>Producto: Laptop</span></span>
+              <span class="timeline-time">09:17</span>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-icon " aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <span class="timeline-copy"><strong>Nuevo cliente registrado</strong><span>Tecnología S.A.S.</span></span>
+              <span class="timeline-time">08:12</span>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-icon green" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+              <span class="timeline-copy"><strong>Pago recibido</strong><span>$ 2.450.000</span></span>
+              <span class="timeline-time">Ayer</span>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-icon " aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+              <span class="timeline-copy"><strong>Usuario creado</strong><span>María Torres</span></span>
+              <span class="timeline-time">Ayer</span>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-icon green" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+              <span class="timeline-copy"><strong>Documento en contingencia conciliado automáticamente</strong><span>Capacidad C6 activa</span></span>
+              <span class="timeline-time">Ayer</span>
+            </li>
+            </ul>
+          </article>
+        </div>
+      </section>
     </main>
 
     <!-- FOOTER -->
     <footer class="footer-bar" role="contentinfo" aria-label="Pie de página">
       <div class="footer-section">
-        <p class="footer-title">Contacts</p>
-        <p>Phone: <a href="tel:+573124590501"><strong>+57 3124590501</strong></a></p>
-        <p>Email: <a href="mailto:email-example@gmail.com"><strong>email-example@gmail.com</strong></a></p>
-        <p>Twitter: <a href="https://twitter.com/amapola-example" target="_blank"><strong>@amapola-example</strong></a>
-        </p>
+        <p class="footer-title">Contactos</p>
+        <p>Teléfono: <a href="tel:+573124590501"><strong>+57 312 459 0501</strong></a></p>
+        <p>Correo: <a href="mailto:correo@ejemplo.com"><strong>correo@ejemplo.com</strong></a></p>
+        <p>Twitter: <a href="https://twitter.com/amapola-example" target="_blank" rel="noopener"><strong>@amapola-example</strong></a></p>
       </div>
       <div class="footer-section">
-        <p class="footer-title">Development</p>
-        <p>GitHub: <a href="https://github.com/AmpolStack/jobby-repo"
-            target="_blank"><strong>AmpolStack/jobby-repo.git</strong></a></p>
-        <p>Docs: <a href="https://notion.com/slides/jobbydocs"
-            target="_blank"><strong>notion.com/slides/jobbydocs</strong></a></p>
+        <p class="footer-title">Desarrollo</p>
+        <p>GitHub: <a href="https://github.com/AmpolStack/jobby-repo" target="_blank" rel="noopener"><strong>AmpolStack/jobby-repo.git</strong></a></p>
+        <p>Documentación: <a href="https://notion.com/slides/jobbydocs" target="_blank" rel="noopener"><strong>notion.com/slides/jobbydocs</strong></a></p>
         <p class="footer-powered">Powered by @Amapola</p>
       </div>
     </footer>

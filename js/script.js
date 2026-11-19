@@ -74,6 +74,7 @@ function simulateOperation(successMsg) {
 
   // Reset
   bars.forEach(bar => {
+    if (!bar) return;
     bar.style.transition = "none";
     bar.style.width = "0%";
     bar.offsetHeight; // force reflow
@@ -84,20 +85,22 @@ function simulateOperation(successMsg) {
 
   setTimeout(() => {
     // Finish loading
-    bars.forEach(bar => bar.classList.remove("loading"));
+    bars.forEach(bar => bar?.classList.remove("loading"));
     
     // Show Toast
-    toastMessage.textContent = successMsg;
-    toast.classList.add("show");
+    if (toastMessage && toast) {
+      toastMessage.textContent = successMsg;
+      toast.classList.add("show");
+    }
 
     // Clear bars after a bit
     setTimeout(() => {
-      bars.forEach(bar => { bar.style.width = "0%"; });
+      bars.forEach(bar => { if (bar) bar.style.width = "0%"; });
     }, 400);
 
     // Hide toast after 3s
     setTimeout(() => {
-      toast.classList.remove("show");
+      toast?.classList.remove("show");
     }, 3000);
   }, 2000); 
 }
@@ -136,18 +139,28 @@ function closeSidebar() {
   hamburger?.setAttribute("aria-expanded", "false");
 }
 
-hamburger.addEventListener("click", openSidebar);
-backdrop.addEventListener("click", closeSidebar);
+hamburger?.addEventListener("click", openSidebar);
+backdrop?.addEventListener("click", closeSidebar);
+
+// ── Atajo de búsqueda (Ctrl + K) ──────────────────────────────
+window.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+    e.preventDefault();
+    document.getElementById("global-search")?.focus();
+  }
+});
 
 // ── Screen navigation ─────────────────────────────────────────
 function showScreen(screenId) {
   screens.forEach(s => s.classList.toggle("active", s.id === screenId));
 
   const isBoard = screenId === "board-screen";
-  navBusiness.textContent = isBoard ? "JOBBY" : "Jobby-marketly";
+  if (navBusiness) navBusiness.textContent = isBoard ? "JOBBY" : "Jobby-marketly";
 
   menuItems.forEach(item => {
-    item.classList.toggle("active", item.dataset.screenTarget === screenId);
+    if (item.dataset.screenTarget) {
+      item.classList.toggle("active", item.dataset.screenTarget === screenId);
+    }
   });
 
   // Scroll content to top
@@ -180,7 +193,7 @@ toggles.forEach(toggle => {
     card.classList.toggle("expanded");
     const isExpanded = card.classList.contains("expanded");
     toggle.setAttribute("aria-expanded", isExpanded);
-    toggle.textContent = isExpanded ? "Hide details" : "Show details";
+    toggle.textContent = isExpanded ? "Ocultar detalles" : "Ver detalles";
   });
 });
 

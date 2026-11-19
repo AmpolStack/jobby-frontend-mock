@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Jobby ERP – Administra espacios, personal, productos y caja desde una sola vista clara.">
-  <title>Jobby ERP - Sales Record</title>
+  <title>Jobby ERP - Ventas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,6 +15,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/brand.css">
 </head>
@@ -29,103 +31,113 @@
   <!-- Success toast -->
   <aside id="toast" aria-label="Notificaciones" aria-live="polite">
     <span class="toast-icon">✓</span>
-    <span id="toast-message">Done!</span>
+    <span id="toast-message">Listo</span>
   </aside>
 
   <!-- Bottom Progress bar -->
   <div id="progress-bar-bottom"></div>
 
   <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
-  <aside class="sidebar" id="sidebar">
+  <aside class="sidebar" id="sidebar" aria-label="Navegación lateral">
     <div class="sidebar-brand">
-      <span class="logo-mark">J</span>
-      <span>JOBBY</span>
+      <span class="brand-blob" aria-hidden="true">J</span>
+      <span class="brand-wordmark">jobby</span>
     </div>
     <nav class="sidebar-nav" role="navigation" aria-label="Navegación principal">
-      <a href="home.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7" rx="1" />
-          <rect x="14" y="3" width="7" height="7" rx="1" />
-          <rect x="3" y="14" width="7" height="7" rx="1" />
-          <rect x="14" y="14" width="7" height="7" rx="1" />
-        </svg>
-        Home
-      </a>
-      <a href="sectionals.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-        Sectionals
-      </a>
-      <a href="employees.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 00-3-3.87" />
-          <path d="M16 3.13a4 4 0 010 7.75" />
-        </svg>
-        Employees
-      </a>
-      <a href="products.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <path d="M16 10a4 4 0 01-8 0" />
-        </svg>
-        Products
-      </a>
-      <a href="cashier.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="1" y="4" width="22" height="16" rx="2" />
-          <line x1="1" y1="10" x2="23" y2="10" />
-        </svg>
-        Cashier
-      </a>
-      <a href="clients.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-        Clients
-      </a>
-      <a href="sales.html" class="menu-item active">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-        </svg>
-        Sales Record
-      </a>
-      <a href="subscriptions.html" class="menu-item">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-        </svg>
-        Subscriptions & Rents
-      </a>
+      <a href="home.html" class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Inicio</span></a>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Facturación</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Crear factura</a>
+          <a href="transaction-detail.html" class="">Consultar DIAN</a>
+          <a href="transaction-detail.html" class="">Documentos electrónicos</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Lotes de facturación</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Clientes</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="clients.html" class="">Clientes</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Listas de precios</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>Inventario</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="products.html" class="">Productos</a>
+          <a href="products.html" class="">Stock</a>
+          <a href="sectionals.html" class="">Movimientos</a>
+        </div>
+      </details>
+      <a href="subscriptions.html" class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span>Compras</span></a>
+      <details class="nav-group has-active" open>
+        <summary class="menu-item active"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span>Ventas</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="cashier.html" class="">Caja</a>
+          <a href="sales.html" class="active" aria-current="page">Registro de ventas</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg><span>Reportes</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Financieros</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Ventas</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Inventario</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Personalizados</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Configuración</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="sectionals.html" class="">Organización</a>
+          <a href="employees.html" class="">Usuarios</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Permisos</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Integraciones</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Arquitectura</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="architecture.html#comparacion" class="">AS-IS / TO-BE</a>
+          <a href="architecture.html#roadmap" class="">Hoja de ruta</a>
+        </div>
+      </details>
     </nav>
+    <div class="sidebar-footer">
+      <span class="brand-blob" aria-hidden="true">J</span>
+      <span class="sidebar-footer-copy"><strong>Empresa S.A.S.</strong><span>NIT 900.123.456-7</span></span>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-chevron"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </aside>
 
-    </aside>
 
   <!-- ── MAIN LAYOUT ──────────────────────────────────────────── -->
   <div class="app-layout">
     <!-- TOP BAR -->
     <header class="topbar" role="banner" aria-label="Barra superior">
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menú de navegación" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <strong class="topbar-brand" id="nav-business">JOBBY</strong>
-      <a href="profile.html" class="topbar-right">
-        <span class="topbar-user">Founder Username</span>
-        <img class="topbar-avatar"
-          src="https://ui-avatars.com/api/?name=Founder+Username&background=020617&color=fff&size=128" alt="Avatar">
-      </a></header>
+      <strong class="topbar-context" id="nav-business">Ventas</strong>
+      <label class="topbar-search" for="global-search">
+        <span class="brand-search-icon" aria-hidden="true"></span>
+        <input type="search" id="global-search" placeholder="Buscar en Jobby..." aria-label="Buscar en Jobby">
+        <span class="kbd" aria-hidden="true">Ctrl + K</span>
+      </label>
+      <div class="topbar-actions">
+        <button class="notification-btn" type="button" aria-label="Notificaciones, 1 sin leer">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot" aria-hidden="true"></span>
+        </button>
+        <a href="profile.html" class="topbar-right" aria-label="Perfil de Juan Díaz, administrador">
+          <span class="topbar-user-wrap">
+            <span class="topbar-user">Juan Díaz</span>
+            <span class="topbar-role">Administrador</span>
+          </span>
+          <span class="topbar-avatar" aria-hidden="true">JD</span>
+        </a>
+      </div>
+    </header>
 
     <!-- CONTENT -->
     <main class="content" role="main" aria-label="Contenido principal" id="content">
@@ -133,7 +145,7 @@
       <!-- SCREEN: SALES RECORD ───────────────────────────────── -->
       <section class="screen active" id="sales-screen">
         <div class="page-head">
-          <h1>Sales Record</h1>
+          <h1>Ventas</h1>
           <button class="secondary-button">
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
@@ -148,8 +160,8 @@
         <!-- Metric Cards -->
         <div class="stats-grid"
           style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin-bottom: 24px;">
-          <div><span>Total Revenue</span><strong>$124,500</strong></div>
-          <div><span>Total Sales</span><strong>1,204</strong></div>
+          <div><span>Ingresos totales</span><strong>$ 124.500.000</strong></div>
+          <div><span>Ventas totales</span><strong>1.204</strong></div>
           <div><span>Avg. Order Value</span><strong>$103.40</strong></div>
           <div><span>Growth</span><strong style="color: var(--success);">+14.5%</strong></div>
         </div>
@@ -196,47 +208,46 @@
               </div>
             </section>
 
-            <!-- Recent Sales Table Mockup -->
+            <!-- Recent Ventas Table Mockup -->
             <section class="card" style="padding: 24px; margin-top: 20px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                <h2 style="font-size: 1.1rem;">Recent Transactions</h2>
-                <button class="ghost-action small-button">Filter</button>
+                <h2 style="font-size: 1.1rem;">Transacciones recientes</h2>
+                <button class="ghost-action small-button">Filtrar</button>
               </div>
               <div class="summary-lines" style="margin-top: 10px;">
                 <div
                   style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 5px; background: transparent; border-radius: 0; border-top: none; border-left: none; border-right: none;">
                   <span class="section-label" style="margin: 0;">ID</span>
-                  <span class="section-label" style="margin: 0;">Client</span>
-                  <span class="section-label" style="margin: 0;">Date</span>
-                  <span class="section-label" style="margin: 0; text-align: right;">Amount</span>
+                  <span class="section-label" style="margin: 0;">Cliente</span>
+                  <span class="section-label" style="margin: 0;">Fecha</span>
+                  <span class="section-label" style="margin: 0; text-align: right;">Valor</span>
                 </div>
                 <a href="transaction-detail.html"
                   style="text-decoration: none; color: inherit; display: block; border-bottom: 1px solid var(--border); transition: background var(--t);">
                   <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; padding: 10px;">
                     <span style="color: var(--primary); font-weight: 600;">#TRX-901</span><span>Kathleen
-                      Booth</span><span>Today, 14:30</span><strong style="text-align: right;">$177.00</strong>
+                      Booth</span><span>Hoy, 14:30</span><strong style="text-align: right;">$ 177.000</strong>
                   </div>
                 </a>
                 <a href="transaction-detail.html"
                   style="text-decoration: none; color: inherit; display: block; border-bottom: 1px solid var(--border); transition: background var(--t);">
                   <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; padding: 10px;">
                     <span style="color: var(--primary); font-weight: 600;">#TRX-900</span><span>John
-                      McCarthy</span><span>Today, 11:15</span><strong style="text-align: right;">$45.50</strong>
+                      McCarthy</span><span>Hoy, 11:15</span><strong style="text-align: right;">$ 45.500</strong>
                   </div>
                 </a>
                 <a href="transaction-detail.html"
                   style="text-decoration: none; color: inherit; display: block; border-bottom: 1px solid var(--border); transition: background var(--t);">
                   <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; padding: 10px;">
                     <span
-                      style="color: var(--primary); font-weight: 600;">#TRX-899</span><span>Walk-in</span><span>Yesterday,
-                      18:40</span><strong style="text-align: right;">$12.00</strong>
+                      style="color: var(--primary); font-weight: 600;">#TRX-899</span><span>Mostrador</span><span>Ayer, 18:40</span><strong style="text-align: right;">$12.00</strong>
                   </div>
                 </a>
                 <a href="transaction-detail.html"
                   style="text-decoration: none; color: inherit; display: block; border-bottom: 1px solid var(--border); transition: background var(--t);">
                   <div style="grid-template-columns: 1fr 1.5fr 1fr 1fr; display: grid; padding: 10px;">
                     <span style="color: var(--primary); font-weight: 600;">#TRX-898</span><span>Alan
-                      Turing</span><span>Yesterday, 14:20</span><strong style="text-align: right;">$34.00</strong>
+                      Turing</span><span>Ayer, 14:20</span><strong style="text-align: right;">$ 34.000</strong>
                   </div>
                 </a>
               </div>
@@ -244,19 +255,19 @@
           </div>
 
           <div class="cashier-right">
-            <!-- Top Selling Products -->
+            <!-- Productos más vendidos -->
             <section class="card" style="padding: 24px;">
-              <h2 style="font-size: 1.1rem;">Top Selling Products</h2>
+              <h2 style="font-size: 1.1rem;">Productos más vendidos</h2>
               <div class="summary-lines" style="margin-top: 16px;">
-                <div><span>Beer Soda</span><strong>1.6K sales</strong></div>
-                <div><span>Carbonated Drink</span><strong>4K sales</strong></div>
-                <div><span>Popcorn 300g</span><strong>5.2K sales</strong></div>
+                <div><span>Beer Soda</span><strong>1,6 mil ventas</strong></div>
+                <div><span>Carbonated Drink</span><strong>4 mil ventas</strong></div>
+                <div><span>Popcorn 300g</span><strong>5,2 mil ventas</strong></div>
               </div>
             </section>
 
-            <!-- Sales by Type -->
+            <!-- Ventas by Type -->
             <section class="card" style="padding: 24px; margin-top: 20px;">
-              <h2 style="font-size: 1.1rem;">Sales by Category</h2>
+              <h2 style="font-size: 1.1rem;">Ventas por categoría</h2>
               <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 18px;">
                 <div>
                   <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
@@ -271,7 +282,7 @@
                 <div>
                   <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
                     <span
-                      style="color: var(--text-secondary); font-weight: 600;">Subscriptions</span><strong>25%</strong>
+                      style="color: var(--text-secondary); font-weight: 600;">Suscripciones</span><strong>25%</strong>
                   </div>
                   <div
                     style="height: 8px; background: var(--surface-alt); width: 100%; border-radius: var(--radius-xl);">
@@ -280,7 +291,7 @@
                 </div>
                 <div>
                   <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
-                    <span style="color: var(--text-secondary); font-weight: 600;">Rents</span><strong>10%</strong>
+                    <span style="color: var(--text-secondary); font-weight: 600;">Rentas</span><strong>10%</strong>
                   </div>
                   <div
                     style="height: 8px; background: var(--surface-alt); width: 100%; border-radius: var(--radius-xl);">
@@ -298,18 +309,15 @@
     <!-- FOOTER -->
     <footer class="footer-bar" role="contentinfo" aria-label="Pie de página">
       <div class="footer-section">
-        <p class="footer-title">Contacts</p>
-        <p>Phone: <a href="tel:+573124590501"><strong>+57 3124590501</strong></a></p>
-        <p>Email: <a href="mailto:email-example@gmail.com"><strong>email-example@gmail.com</strong></a></p>
-        <p>Twitter: <a href="https://twitter.com/amapola-example" target="_blank"><strong>@amapola-example</strong></a>
-        </p>
+        <p class="footer-title">Contactos</p>
+        <p>Teléfono: <a href="tel:+573124590501"><strong>+57 312 459 0501</strong></a></p>
+        <p>Correo: <a href="mailto:correo@ejemplo.com"><strong>correo@ejemplo.com</strong></a></p>
+        <p>Twitter: <a href="https://twitter.com/amapola-example" target="_blank" rel="noopener"><strong>@amapola-example</strong></a></p>
       </div>
       <div class="footer-section">
-        <p class="footer-title">Development</p>
-        <p>GitHub: <a href="https://github.com/AmpolStack/jobby-repo"
-            target="_blank"><strong>AmpolStack/jobby-repo.git</strong></a></p>
-        <p>Docs: <a href="https://notion.com/slides/jobbydocs"
-            target="_blank"><strong>notion.com/slides/jobbydocs</strong></a></p>
+        <p class="footer-title">Desarrollo</p>
+        <p>GitHub: <a href="https://github.com/AmpolStack/jobby-repo" target="_blank" rel="noopener"><strong>AmpolStack/jobby-repo.git</strong></a></p>
+        <p>Documentación: <a href="https://notion.com/slides/jobbydocs" target="_blank" rel="noopener"><strong>notion.com/slides/jobbydocs</strong></a></p>
         <p class="footer-powered">Powered by @Amapola</p>
       </div>
     </footer>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arquitectura del proceso de facturación electrónica de Jobby ERP: comparación AS-IS y TO-BE, contingencia fiscal y hoja de ruta.">
+  <title>Jobby ERP - Arquitectura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/brand.css">
+</head>
+
+<body>
+
+  <!-- Skip to content (accesibilidad) -->
+  <a href="#content" class="skip-link">Saltar al contenido</a>
+
+  <!-- Progress bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Success toast -->
+  <aside id="toast" aria-label="Notificaciones" aria-live="polite">
+    <span class="toast-icon">✓</span>
+    <span id="toast-message">Listo</span>
+  </aside>
+
+  <!-- Bottom Progress bar -->
+  <div id="progress-bar-bottom"></div>
+
+  <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar" aria-label="Navegación lateral">
+    <div class="sidebar-brand">
+      <span class="brand-blob" aria-hidden="true">J</span>
+      <span class="brand-wordmark">jobby</span>
+    </div>
+    <nav class="sidebar-nav" role="navigation" aria-label="Navegación principal">
+      <a href="home.html" class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Inicio</span></a>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Facturación</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Crear factura</a>
+          <a href="transaction-detail.html" class="">Consultar DIAN</a>
+          <a href="transaction-detail.html" class="">Documentos electrónicos</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Lotes de facturación</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Clientes</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="clients.html" class="">Clientes</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Listas de precios</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>Inventario</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="products.html" class="">Productos</a>
+          <a href="products.html" class="">Stock</a>
+          <a href="sectionals.html" class="">Movimientos</a>
+        </div>
+      </details>
+      <a href="subscriptions.html" class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span>Compras</span></a>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span>Ventas</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="cashier.html" class="">Caja</a>
+          <a href="sales.html" class="">Registro de ventas</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg><span>Reportes</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Financieros</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Ventas</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Inventario</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Personalizados</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="menu-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Configuración</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="sectionals.html" class="">Organización</a>
+          <a href="employees.html" class="">Usuarios</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Permisos</a>
+          <a href="#" class="" aria-disabled="true" title="Disponible en la versión completa">Integraciones</a>
+        </div>
+      </details>
+      <details class="nav-group" open>
+        <summary class="menu-item active"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Arquitectura</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-caret"><polyline points="6 9 12 15 18 9"/></svg></summary>
+        <div class="submenu">
+          <a href="architecture.html#comparacion" class="">AS-IS / TO-BE</a>
+          <a href="architecture.html#roadmap" class="">Hoja de ruta</a>
+        </div>
+      </details>
+    </nav>
+    <div class="sidebar-footer">
+      <span class="brand-blob" aria-hidden="true">J</span>
+      <span class="sidebar-footer-copy"><strong>Empresa S.A.S.</strong><span>NIT 900.123.456-7</span></span>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-chevron"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </aside>
+
+  <!-- ── MAIN LAYOUT ──────────────────────────────────────────── -->
+  <div class="app-layout">
+
+    <!-- TOP BAR -->
+    <header class="topbar" role="banner" aria-label="Barra superior">
+      <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <strong class="topbar-context" id="nav-business">Arquitectura</strong>
+      <label class="topbar-search" for="global-search">
+        <span class="brand-search-icon" aria-hidden="true"></span>
+        <input type="search" id="global-search" placeholder="Buscar en Jobby..." aria-label="Buscar en Jobby">
+        <span class="kbd" aria-hidden="true">Ctrl + K</span>
+      </label>
+      <div class="topbar-actions">
+        <button class="notification-btn" type="button" aria-label="Notificaciones, 1 sin leer">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot" aria-hidden="true"></span>
+        </button>
+        <a href="profile.html" class="topbar-right" aria-label="Perfil de Juan Díaz, administrador">
+          <span class="topbar-user-wrap">
+            <span class="topbar-user">Juan Díaz</span>
+            <span class="topbar-role">Administrador</span>
+          </span>
+          <span class="topbar-avatar" aria-hidden="true">JD</span>
+        </a>
+      </div>
+    </header>
+
+  <!-- ── NAVEGACIÓN DE ANCLAS ───────────────────────────────── -->
+  <nav class="arch-nav" aria-label="Secciones de arquitectura">
+    <a href="#comparacion" class="active">Comparación</a>
+    <a href="#asis">AS-IS</a>
+    <a href="#tobe">TO-BE</a>
+    <a href="#roadmap">Hoja de ruta</a>
+  </nav>
+
+    <!-- CONTENT -->
+    <main class="content" role="main" aria-label="Contenido principal" id="content" tabindex="-1">
+
+      <!-- A. COMPARACIÓN -->
+      <section class="arch-section" id="comparacion" aria-labelledby="comparacion-title">
+        <article class="card arch-hero">
+          <div>
+            <p class="dash-hello">Arquitectura del proceso</p>
+            <h1 id="comparacion-title">Del monolito acoplado a la contingencia de primera clase</h1>
+            <p>Cierre de caja con emisión de documento electrónico: así opera hoy el proceso y así operará cuando la contingencia fiscal deje de ser un accidente y se convierta en una capacidad del sistema.</p>
+          </div>
+          <div class="segmented" role="tablist" aria-label="Seleccionar línea de arquitectura">
+            <button type="button" id="tab-asis" role="tab" aria-selected="true" aria-controls="compare-table" data-target="asis">AS-IS</button>
+            <button type="button" id="tab-tobe" role="tab" aria-selected="false" aria-controls="compare-table" data-target="tobe">TO-BE</button>
+          </div>
+        </article>
+
+        <div class="section-head">
+          <h2>Una misma necesidad, dos formas de resolverla</h2>
+          <p>Seis dimensiones que explican por qué la caja se bloquea hoy y cómo el diseño destino elimina ese punto único de falla.</p>
+        </div>
+        <article class="card dash-panel" id="compare-table" role="tabpanel" aria-labelledby="tab-asis">
+          <div class="table-wrap">
+            <table class="compare-table highlight-asis">
+              <caption>Comparación de la línea base (AS-IS) frente al diseño destino (TO-BE)</caption>
+              <thead>
+                <tr><th scope="col">Dimensión</th><th scope="col">AS-IS (línea base)</th><th scope="col">TO-BE (destino)</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Emisión del documento</th><td>Síncrona, en el hilo de la caja del monolito</td><td>Desacoplada por eventos (Outbox + bus)</td></tr>
+                <tr><th scope="row">Estados del documento</th><td>Emitida / no emitida (sin máquina de estados)</td><td>Máquina de 5 estados (Borrador → … → Aceptado)</td></tr>
+                <tr><th scope="row">Ante caída de la DIAN</th><td>Caja bloqueada, fin anómalo del proceso</td><td>Modo contingencia automático; la caja nunca se bloquea</td></tr>
+                <tr><th scope="row">Conciliación de pendientes</th><td>Manual, reconstrucción desde informes</td><td>Automática al restablecerse (99 %)</td></tr>
+                <tr><th scope="row">Medición del proceso</th><td>Sin métricas</td><td>SLO monitoreados: p95 ≤ 3 s, 60 doc/min, 99,9 %</td></tr>
+                <tr><th scope="row">Datos</th><td>Base única del monolito + hojas de cálculo</td><td>Base de datos por servicio, eventos idempotentes</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <!-- B. AS-IS -->
+      <section class="arch-section" id="asis" aria-labelledby="asis-title">
+        <div class="section-head">
+          <h2 id="asis-title">El problema: la caja bloqueada por la DIAN</h2>
+          <p>Escenario rector: caída de la DIAN de 45 minutos durante el cierre mensual de Ferretería El Tornillo S.A.S. (2 tiendas, 3 POS, ~220 documentos/día).</p>
+        </div>
+        <article class="card dash-panel">
+          <ol class="flow" aria-label="Flujo actual de cierre de caja con fin anómalo">
+            <li class="flow-step"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><h3>Cajero registra venta</h3><p>Inicia el cierre del puesto.</p></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><h3>POS monolito</h3><p>Registra la venta en la base única.</p></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><h3>Emitir documento</h3><p>Se prepara la factura electrónica.</p></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step danger"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><h3>Llamar a la DIAN</h3><p>Síncrono, <strong>en el hilo de la caja</strong>.</p><span class="badge danger">Punto único de falla</span></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>¿DIAN disponible?</h3><p>Decisión en tiempo real.</p></li>
+          </ol>
+
+          <div class="flow-branch">
+            <p class="flow-label" style="color:var(--jb-success-text)">├─ Sí → documento emitido → cierre de caja OK</p>
+            <div class="flow" aria-label="Rama alterna cuando la DIAN no responde">
+              <span class="flow-label danger">└─ No →</span>
+              <article class="card impact-card">
+                <h3 style="color:var(--jb-danger-text);font-size:0.9rem;margin-bottom:8px">Fin anómalo: caja bloqueada</h3>
+                <ul>
+                  <li>3 POS abajo durante los 45 minutos de caída.</li>
+                  <li>Ventas por fuera del sistema.</li>
+                  <li>El contador reconstruye el periodo a mano desde informes y hojas de cálculo.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+
+          <div class="chips" aria-label="Brechas de negocio de la línea base">
+            <span class="chip"><strong>BN1</strong> Sin contingencia formalizada</span>
+            <span class="chip"><strong>BN2</strong> Cierre acoplado a la DIAN</span>
+            <span class="chip"><strong>BN3</strong> Roles sin procedimiento de contingencia</span>
+            <span class="chip"><strong>BN4</strong> Proceso sin medición</span>
+            <span class="chip"><strong>BN5</strong> Sin conciliación de pendientes</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- C. TO-BE -->
+      <section class="arch-section" id="tobe" aria-labelledby="tobe-title">
+        <div class="section-head">
+          <h2 id="tobe-title">La solución: contingencia como capacidad de primera clase</h2>
+          <p>La emisión sale del hilo de caja mediante eventos. Si la DIAN cae, el documento sigue su camino en modo contingencia y se concilia automáticamente al restablecerse.</p>
+        </div>
+        <article class="card dash-panel">
+          <ol class="flow" id="tobe-flow" aria-label="Flujo destino de cierre de caja con contingencia y conciliación">
+            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><h3>Cajero registra venta</h3><p>La caja sigue operando.</p></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"/><polyline points="4 8 12 14 20 8"/></svg></span><h3>Publica VentaRegistrada</h3><p>Outbox transaccional.</p></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="2" cy="7" r="0.5"/><circle cx="2" cy="12" r="0.5"/><circle cx="2" cy="17" r="0.5"/></svg></span><h3>Bus de eventos</h3><p>Entrega garantizada a Facturación.</p></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><h3>Documento Borrador</h3><p>Facturación lo crea.</p></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Firma local</h3><p>XAdES-B + CUFE/CUDE.</p></li>
+            <li class="flow-arrow" aria-hidden="true">→</li>
+            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>¿Validación previa disponible?</h3><p>Comprueba la DIAN sin bloquear.</p></li>
+          </ol>
+
+          <div class="flow-branch">
+            <p class="flow-label" style="color:var(--jb-success-text)">├─ Sí → Transmitido → Aceptado → Notificación → Cierre OK</p>
+            <div class="flow-branch"><ol class="flow" aria-label="Rama de contingencia y conciliación automática">
+              <span class="flow-label warn">└─ No →</span>
+              <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><h3>Emitido localmente</h3><p>Contingencia: la caja no se detiene.</p></li>
+              <li class="flow-arrow" aria-hidden="true">→</li>
+              <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><h3>Cola de contingencia</h3><p>Eventos pendientes de reintento.</p></li>
+              <li class="flow-arrow" aria-hidden="true">→</li>
+              <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></span><h3>Sincronizador</h3><p>Retransmite al restablecerse.</p></li>
+              <li class="flow-arrow" aria-hidden="true">→</li>
+              <li class="flow-step success" data-sim-step data-branch="contingencia"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><h3>Transmitido → Aceptado</h3><p>Conciliación automática (99 %).</p></li>
+            </ol></div>
+          </div>
+
+          <span class="badge success" style="margin-top:12px">✓ La caja NUNCA se bloquea en ninguna rama</span>
+
+          <div class="sim-controls">
+            <button class="cta" type="button" id="simulate-btn">Simular caída de la DIAN</button>
+            <button class="secondary-button" type="button" id="reset-btn">Restablecer</button>
+            <span class="sim-status" id="sim-status" aria-live="polite">Listo para simular una caída de 45 minutos.</span>
+          </div>
+        </article>
+
+        <div class="section-head" style="margin-top:32px">
+          <h2>Máquina de estados del documento</h2>
+          <p>Cinco estados explícitos: el documento tributario deja de ser un banner binario «emitida / no emitida».</p>
+        </div>
+        <article class="card dash-panel">
+          <div class="stepper" role="tablist" aria-label="Estados del documento tributario">
+            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="borrador" aria-describedby="state-panel"><span class="state-dot">1</span><span class="state-name">Borrador</span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="local" aria-describedby="state-panel"><span class="state-dot">2</span><span class="state-name">Emitido localmente</span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="firmado" aria-describedby="state-panel"><span class="state-dot">3</span><span class="state-name">Firmado</span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="transmitido" aria-describedby="state-panel"><span class="state-dot">4</span><span class="state-name">Transmitido</span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="true" data-state="aceptado" aria-describedby="state-panel"><span class="state-dot">5</span><span class="state-name">Aceptado</span></button>
+          </div>
+          <div class="state-panel" id="state-panel" role="tabpanel" aria-live="polite">
+            <h3>Aceptado</h3>
+            <p>La DIAN validó el documento y devolvió su aceptación. Se notifica al cliente y el cierre queda completo.</p>
+          </div>
+          <div class="slo-grid" aria-label="Objetivos de nivel de servicio">
+            <article class="card slo-card"><span class="step-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><strong>p95 ≤ 3 s</strong><span>Latencia de emisión</span></article>
+            <article class="card slo-card"><span class="step-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><polyline points="17 7 21 7 21 11"/></svg></span><strong>60 doc/min</strong><span>Capacidad de emisión</span></article>
+            <article class="card slo-card"><span class="step-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><strong>99,9 %</strong><span>Disponibilidad</span></article>
+            <article class="card slo-card"><span class="step-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></span><strong>99 %</strong><span>Conciliación automática</span></article>
+          </div>
+          <div class="chips" aria-label="Capacidades de la arquitectura destino">
+            <span class="chip"><strong>C1</strong> Gestión comercial y POS</span>
+            <span class="chip"><strong>C2</strong> Emisión y cumplimiento fiscal</span>
+            <span class="chip"><strong>C3</strong> Inventario y catálogo</span>
+            <span class="chip"><strong>C4</strong> Analítica y cierre contable</span>
+            <span class="chip"><strong>C5</strong> Administración de plataforma</span>
+            <span class="chip highlight"><strong>C6</strong> Contingencia fiscal <span class="badge info">Nueva</span></span>
+          </div>
+        </article>
+      </section>
+
+      <!-- D. HOJA DE RUTA -->
+      <section class="arch-section" id="roadmap" aria-labelledby="roadmap-title">
+        <div class="section-head">
+          <h2 id="roadmap-title">Cómo llegamos: iniciativas e hitos</h2>
+          <p>Ocho iniciativas ordenadas en seis fases, con cinco hitos medibles que cierran las brechas de la línea base.</p>
+        </div>
+        <div class="roadmap-layout">
+          <article class="card dash-panel">
+            <h3 class="panel-title" style="margin-bottom:10px">Iniciativas</h3>
+            <ol class="initiative-list">
+              <li class="initiative"><span class="phase-chip">Fase 0</span><div><h3>I1 · Plataforma base</h3><p>Módulo shared, DDD hexagonal y maestros.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 1</span><div><h3>I2 · API Gateway e Identidad</h3><p>Borde consolidado y autenticación centralizada.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 2</span><div><h3>I3 · Facturación</h3><p>Máquina de 5 estados, UBL 2.1 y firma XAdES.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 2</span><div><h3>I4 · POS y Ventas con Outbox</h3><p>Emisión desacoplada del hilo de caja.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 3</span><div><h3>I5 · Sincronización de contingencia</h3><p>Cola de reintentos y conciliación automática.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 4</span><div><h3>I6 · Reportes (CQRS) y Notificaciones</h3><p>Cierre contable y avisos al cliente.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 4</span><div><h3>I7 · Observabilidad</h3><p>Prometheus, Loki, Zipkin y SLO en Grafana.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 5</span><div><h3>I8 · Producción en Kubernetes</h3><p>Despliegue y operación de la plataforma.</p></div></li>
+            </ol>
+          </article>
+          <div class="milestone-grid">
+            <article class="card milestone"><div class="milestone-head"><h3>H1 · Plataforma operable</h3><span class="phase-tag">Fase 0</span></div><p>Maestros servidos con índice HMAC.</p></article>
+            <article class="card milestone"><div class="milestone-head"><h3>H2 · Borde consolidado</h3><span class="phase-tag">Fase 1</span></div><p>Todo el tráfico externo pasa por el gateway.</p></article>
+            <article class="card milestone"><div class="milestone-head"><h3>H3 · Emisión conforme</h3><span class="phase-tag">Fase 2</span></div><p>El documento recorre los 5 estados con CUFE/CUDE y XAdES-B.</p></article>
+            <article class="card milestone"><div class="milestone-head"><h3>H4 · Cadena de contingencia</h3><span class="phase-tag">Fase 3</span></div><p>Caída simulada de 45 min: cero ventas bloqueadas y 99 % conciliado.</p></article>
+            <article class="card milestone"><div class="milestone-head"><h3>H5 · SLO instrumentados</h3><span class="phase-tag">Fases 4–5</span></div><p>KPIs como alertas en Grafana y producción en Kubernetes.</p></article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- FOOTER -->
+    <footer class="footer-bar" role="contentinfo" aria-label="Pie de página">
+      <div class="footer-section">
+        <p class="footer-title">Contactos</p>
+        <p>Teléfono: <a href="tel:+573124590501"><strong>+57 312 459 0501</strong></a></p>
+        <p>Correo: <a href="mailto:correo@ejemplo.com"><strong>correo@ejemplo.com</strong></a></p>
+        <p>Twitter: <a href="https://twitter.com/amapola-example" target="_blank" rel="noopener"><strong>@amapola-example</strong></a></p>
+      </div>
+      <div class="footer-section">
+        <p class="footer-title">Desarrollo</p>
+        <p>GitHub: <a href="https://github.com/AmpolStack/jobby-repo" target="_blank" rel="noopener"><strong>AmpolStack/jobby-repo.git</strong></a></p>
+        <p>Documentación: <a href="https://notion.com/slides/jobbydocs" target="_blank" rel="noopener"><strong>notion.com/slides/jobbydocs</strong></a></p>
+        <p class="footer-powered">Powered by @Amapola</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Mobile sidebar overlay -->
+  <div class="sidebar-backdrop hidden" id="sidebar-backdrop"></div>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/architecture.js"></script>
+</body>
+
+</html>

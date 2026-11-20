@@ -2,6 +2,7 @@
 
 **Documento fuente:** `Prompt_Mock_Jobby.md` (v1.0, noviembre de 2026)
 **Fecha de inicio:** 19 de noviembre de 2026
+**Última actualización:** 20 de noviembre de 2026
 **Estado general:** ✅ Completado
 
 > Este archivo documenta el avance de las tareas del prompt maestro.
@@ -59,6 +60,7 @@
 - **19/11/2026 — Arquitectura.** Nueva página + `js/architecture.js` con stepper, simulación y conciliación automática.
 - **19/11/2026 — JS y autenticación.** Guards y atajo Ctrl+K en `script.js`; rediseño de `index.html` y `register.html`.
 - **19/11/2026 — Cierre i18n y verificación.** Cuatro pasadas de localización (incluye textos partidos y mensajes toast), footer faltante en 2 páginas, breakpoint 375px y checklist §3.3 en verde.
+- **20/11/2026 — Logo y claridad de arquitectura.** Se integró `logo.png` (símbolo blanco sobre transparente) en el wordmark del sidebar de los 11 layouts y en las 2 pantallas de acceso. Se reescribió `pages/architecture.html` con guía de lectura, resumen «en corto», flujos numerados, ramas normal/contingencia, 5 estados, SLO, roadmap y glosario, conservando anclas, IDs y simulación; se ampliaron estilos y se actualizó el JS para reflejar las métricas durante la simulación. Regressiones en verde: HTML 13/13, `node --check`, checklist §3.3 y IDs BN1–BN5/C1–C6/I1–I8/H1–H5.
 
 ## Hallazgos y decisiones
 

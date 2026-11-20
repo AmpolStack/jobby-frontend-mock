@@ -72,6 +72,9 @@ const simSteps = Array.from(document.querySelectorAll("#tobe-flow [data-sim-step
   .concat(Array.from(document.querySelectorAll("[data-branch='contingencia'][data-sim-step]")));
 const toast = document.getElementById("toast");
 const toastMessage = document.getElementById("toast-message");
+const metricBlocked = document.getElementById("metric-blocked");
+const metricContingency = document.getElementById("metric-contingency");
+const metricReconciled = document.getElementById("metric-reconciled");
 
 const FINAL_MESSAGE = "DIAN restablecida · 99 % de documentos conciliados automáticamente";
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -88,6 +91,9 @@ function clearSimulation() {
     step.classList.remove("sim-active", "sim-done", "sim-contingencia");
   });
   toast?.classList.remove("show");
+  if (metricBlocked) metricBlocked.textContent = "0";
+  if (metricContingency) metricContingency.textContent = "0";
+  if (metricReconciled) metricReconciled.textContent = "0 %";
   if (simStatus) simStatus.textContent = "Listo para simular una caída de 45 minutos.";
 }
 
@@ -95,19 +101,28 @@ async function runSimulation() {
   if (!simulateBtn) return;
   clearSimulation();
   simulateBtn.disabled = true;
-  if (simStatus) simStatus.textContent = "Simulación iniciada: caída de la DIAN";
+  if (simStatus) simStatus.textContent = "Paso 1 de 2: la DIAN cae, la caja sigue vendiendo";
   document.getElementById("tobe")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
 
   const delay = reduceMotion ? 0 : 600;
+  let contingencyStarted = false;
   for (const step of simSteps) {
     step.classList.add("sim-active");
-    if (step.dataset.branch === "contingencia") step.classList.add("sim-contingencia");
+    if (step.dataset.branch === "contingencia") {
+      step.classList.add("sim-contingencia");
+      if (!contingencyStarted) {
+        contingencyStarted = true;
+        if (metricContingency) metricContingency.textContent = "45";
+        if (simStatus) simStatus.textContent = "Paso 2 de 2: facturas guardadas, esperando a la DIAN";
+      }
+    }
     await wait(delay);
     step.classList.remove("sim-active");
     step.classList.add("sim-done");
   }
 
-  if (simStatus) simStatus.textContent = "DIAN restablecida, documentos conciliados";
+  if (metricReconciled) metricReconciled.textContent = "99 %";
+  if (simStatus) simStatus.textContent = "Listo: DIAN restablecida y documentos conciliados";
   showToast(FINAL_MESSAGE);
   simulateBtn.disabled = false;
 }

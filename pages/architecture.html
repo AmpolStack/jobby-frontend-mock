@@ -38,7 +38,7 @@
   <!-- ── SIDEBAR ─────────────────────────────────────────────── -->
   <aside class="sidebar" id="sidebar" aria-label="Navegación lateral">
     <div class="sidebar-brand">
-      <span class="brand-blob" aria-hidden="true">J</span>
+      <img class="brand-logo" src="../logo.png" alt="" width="36" height="36">
       <span class="brand-wordmark">jobby</span>
     </div>
     <nav class="sidebar-nav" role="navigation" aria-label="Navegación principal">
@@ -153,33 +153,50 @@
         <article class="card arch-hero">
           <div>
             <p class="dash-hello">Arquitectura del proceso</p>
-            <h1 id="comparacion-title">Del monolito acoplado a la contingencia de primera clase</h1>
-            <p>Cierre de caja con emisión de documento electrónico: así opera hoy el proceso y así operará cuando la contingencia fiscal deje de ser un accidente y se convierta en una capacidad del sistema.</p>
+            <h1 id="comparacion-title">Cuando la DIAN cae, la caja no debería detenerse</h1>
+            <p>Esta página explica sin tecnicismos qué pasa hoy cuando la entidad fiscal no responde, y cómo el nuevo diseño evita que se pierdan ventas. Primero el problema (AS-IS), después la solución (TO-BE) y al final el plan.</p>
           </div>
           <div class="segmented" role="tablist" aria-label="Seleccionar línea de arquitectura">
-            <button type="button" id="tab-asis" role="tab" aria-selected="true" aria-controls="compare-table" data-target="asis">AS-IS</button>
-            <button type="button" id="tab-tobe" role="tab" aria-selected="false" aria-controls="compare-table" data-target="tobe">TO-BE</button>
+            <button type="button" id="tab-asis" role="tab" aria-selected="true" aria-controls="compare-table" data-target="asis">Hoy · AS-IS</button>
+            <button type="button" id="tab-tobe" role="tab" aria-selected="false" aria-controls="compare-table" data-target="tobe">Mañana · TO-BE</button>
+          </div>
+        </article>
+
+        <article class="card reading-guide" aria-labelledby="guia-title">
+          <h2 id="guia-title" class="panel-title">Cómo leer esta página</h2>
+          <div class="guide-grid">
+            <div class="guide-item"><span class="guide-num">1</span><div><strong>AS-IS = cómo funciona hoy</strong><p>Es la línea base: lo que ya existe y lo que está fallando.</p></div></div>
+            <div class="guide-item"><span class="guide-num">2</span><div><strong>TO-BE = cómo funcionará</strong><p>Es el diseño destino que vamos a construir.</p></div></div>
+            <div class="guide-item"><span class="guide-num">3</span><div><strong>DIAN = quien aprueba las facturas</strong><p>Es la entidad que valida las facturas electrónicas en Colombia.</p></div></div>
+            <div class="guide-item"><span class="guide-num">4</span><div><strong>Contingencia = el plan B</strong><p>Emitir y guardar la factura aunque la DIAN no esté disponible.</p></div></div>
+          </div>
+          <div class="tldr">
+            <strong>En corto</strong>
+            <p><b>Hoy:</b> una caída de 45 minutos detiene 3 cajas y el contador reconstruye las ventas a mano.</p>
+            <p><b>Mañana:</b> la factura se guarda con validez local y se envía sola cuando la DIAN vuelve.</p>
+            <p><b>Resultado:</b> 0 ventas bloqueadas y 99 % de documentos conciliados automáticamente.</p>
           </div>
         </article>
 
         <div class="section-head">
-          <h2>Una misma necesidad, dos formas de resolverla</h2>
-          <p>Seis dimensiones que explican por qué la caja se bloquea hoy y cómo el diseño destino elimina ese punto único de falla.</p>
+          <h2>Lado a lado: hoy contra mañana</h2>
+          <p>Lea primero la columna de <b>hoy</b>: ahí está el problema. Luego compárela con la de <b>mañana</b>. Las palabras técnicas van entre paréntesis; lo importante está antes.</p>
         </div>
         <article class="card dash-panel" id="compare-table" role="tabpanel" aria-labelledby="tab-asis">
+          <p class="table-hint"><span class="hint-dot danger"></span> Rojo = el problema <span class="hint-dot primary"></span> Morado = la solución</p>
           <div class="table-wrap">
             <table class="compare-table highlight-asis">
-              <caption>Comparación de la línea base (AS-IS) frente al diseño destino (TO-BE)</caption>
+              <caption>Seis dimensiones del proceso: línea base (AS-IS) frente al diseño destino (TO-BE)</caption>
               <thead>
-                <tr><th scope="col">Dimensión</th><th scope="col">AS-IS (línea base)</th><th scope="col">TO-BE (destino)</th></tr>
+                <tr><th scope="col">¿Qué estamos mirando?</th><th scope="col">Hoy (AS-IS)</th><th scope="col">Mañana (TO-BE)</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Emisión del documento</th><td>Síncrona, en el hilo de la caja del monolito</td><td>Desacoplada por eventos (Outbox + bus)</td></tr>
-                <tr><th scope="row">Estados del documento</th><td>Emitida / no emitida (sin máquina de estados)</td><td>Máquina de 5 estados (Borrador → … → Aceptado)</td></tr>
-                <tr><th scope="row">Ante caída de la DIAN</th><td>Caja bloqueada, fin anómalo del proceso</td><td>Modo contingencia automático; la caja nunca se bloquea</td></tr>
-                <tr><th scope="row">Conciliación de pendientes</th><td>Manual, reconstrucción desde informes</td><td>Automática al restablecerse (99 %)</td></tr>
-                <tr><th scope="row">Medición del proceso</th><td>Sin métricas</td><td>SLO monitoreados: p95 ≤ 3 s, 60 doc/min, 99,9 %</td></tr>
-                <tr><th scope="row">Datos</th><td>Base única del monolito + hojas de cálculo</td><td>Base de datos por servicio, eventos idempotentes</td></tr>
+                <tr><th scope="row">Emisión de la factura</th><td>La caja <b>espera</b> a que la DIAN responda antes de seguir. <small>(llamada síncrona en el hilo del POS)</small></td><td>La venta se registra y la factura se envía <b>por separado</b>. <small>(eventos: Outbox + bus)</small></td></tr>
+                <tr><th scope="row">Estados de la factura</th><td>Solo existe «emitida» o «no emitida». No hay estados intermedios.</td><td>Hay <b>5 estados claros</b>: Borrador → Emitido localmente → Firmado → Transmitido → Aceptado.</td></tr>
+                <tr><th scope="row">Si cae la DIAN</th><td>La caja <b>se bloquea</b> y el cierre se interrumpe. <small>(fin anómalo)</small></td><td>Se activa el <b>modo contingencia</b> automático y la caja sigue vendiendo.</td></tr>
+                <tr><th scope="row">Documentos pendientes</th><td>El contador los reconstruye <b>a mano</b> desde informes y hojas de cálculo.</td><td>Se reenvían solos al restablecerse y se concilian. <small>(99 % automático)</small></td></tr>
+                <tr><th scope="row">Medición</th><td>No hay métricas: <b>no se sabe cuánto se perdió</b>.</td><td>Se vigilan 4 metas: p95 ≤ 3 s, 60 doc/min, 99,9 % de disponibilidad y 99 % de conciliación.</td></tr>
+                <tr><th scope="row">Datos</th><td>Todo vive en <b>una sola base</b> y en hojas de cálculo.</td><td>Cada servicio tiene su base y los avisos se pueden reenviar sin duplicar. <small>(eventos idempotentes)</small></td></tr>
               </tbody>
             </table>
           </div>
@@ -189,43 +206,59 @@
       <!-- B. AS-IS -->
       <section class="arch-section" id="asis" aria-labelledby="asis-title">
         <div class="section-head">
-          <h2 id="asis-title">El problema: la caja bloqueada por la DIAN</h2>
-          <p>Escenario rector: caída de la DIAN de 45 minutos durante el cierre mensual de Ferretería El Tornillo S.A.S. (2 tiendas, 3 POS, ~220 documentos/día).</p>
+          <h2 id="asis-title">El problema: la caja se detiene cuando la DIAN cae</h2>
+          <p>Ejemplo usado en todo el análisis: <b>Ferretería El Tornillo S.A.S.</b> (2 tiendas, 3 cajas, unas 220 facturas al día) sufre una caída de la DIAN de <b>45 minutos</b> durante el cierre mensual.</p>
         </div>
+
+        <div class="fact-strip" aria-label="Datos del escenario">
+          <div class="fact"><strong>45 min</strong><span>de caída de la DIAN</span></div>
+          <div class="fact danger"><strong>3</strong><span>cajas detenidas</span></div>
+          <div class="fact"><strong>~220</strong><span>documentos por día en riesgo</span></div>
+        </div>
+
         <article class="card dash-panel">
+          <h3 class="panel-title">El recorrido de una venta hoy</h3>
+          <p class="flow-intro">Cada paso espera al anterior. El paso 4 es donde todo se rompe.</p>
           <ol class="flow" aria-label="Flujo actual de cierre de caja con fin anómalo">
-            <li class="flow-step"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><h3>Cajero registra venta</h3><p>Inicia el cierre del puesto.</p></li>
+            <li class="flow-step"><span class="step-num">1</span><h3>El cajero registra la venta</h3><p>Inicia el cierre del puesto.</p></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><h3>POS monolito</h3><p>Registra la venta en la base única.</p></li>
+            <li class="flow-step"><span class="step-num">2</span><h3>El POS la guarda</h3><p>Todo queda en una sola base de datos.</p></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><h3>Emitir documento</h3><p>Se prepara la factura electrónica.</p></li>
+            <li class="flow-step"><span class="step-num">3</span><h3>Se prepara la factura</h3><p>Se genera el documento electrónico.</p></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step danger"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><h3>Llamar a la DIAN</h3><p>Síncrono, <strong>en el hilo de la caja</strong>.</p><span class="badge danger">Punto único de falla</span></li>
+            <li class="flow-step danger"><span class="step-num">4</span><h3>La caja llama a la DIAN y espera</h3><p><b>Aquí está el problema:</b> la caja no puede seguir hasta que responda.</p><span class="badge danger">Punto único de falla</span></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>¿DIAN disponible?</h3><p>Decisión en tiempo real.</p></li>
+            <li class="flow-step"><span class="step-num">5</span><h3>¿La DIAN responde?</h3><p>La decisión se toma en tiempo real.</p></li>
           </ol>
 
-          <div class="flow-branch">
-            <p class="flow-label" style="color:var(--jb-success-text)">├─ Sí → documento emitido → cierre de caja OK</p>
-            <div class="flow" aria-label="Rama alterna cuando la DIAN no responde">
-              <span class="flow-label danger">└─ No →</span>
-              <article class="card impact-card">
-                <h3 style="color:var(--jb-danger-text);font-size:0.9rem;margin-bottom:8px">Fin anómalo: caja bloqueada</h3>
-                <ul>
-                  <li>3 POS abajo durante los 45 minutos de caída.</li>
-                  <li>Ventas por fuera del sistema.</li>
-                  <li>El contador reconstruye el periodo a mano desde informes y hojas de cálculo.</li>
-                </ul>
-              </article>
-            </div>
+          <h3 class="panel-title" style="margin-top:22px">Y entonces pasa una de dos cosas</h3>
+          <div class="branch-grid">
+            <article class="branch-card ok">
+              <h4>Sí responde → camino normal</h4>
+              <p>La factura se emite, se notifica al cliente y la caja cierra sin incidentes. Es el día bueno.</p>
+              <span class="badge success">Sin problemas</span>
+            </article>
+            <article class="branch-card bad">
+              <h4>No responde → Fin anómalo</h4>
+              <p>La caja se queda esperando. Esto es lo que ocurrió durante los 45 minutos:</p>
+              <ul>
+                <li>3 cajas fuera de servicio.</li>
+                <li>Ventas hechas por fuera del sistema, sin registro.</li>
+                <li>El contador reconstruye el periodo a mano desde informes y hojas de cálculo.</li>
+                <li>No hay forma de saber cuánto se perdió.</li>
+              </ul>
+            </article>
           </div>
 
-          <div class="chips" aria-label="Brechas de negocio de la línea base">
-            <span class="chip"><strong>BN1</strong> Sin contingencia formalizada</span>
-            <span class="chip"><strong>BN2</strong> Cierre acoplado a la DIAN</span>
-            <span class="chip"><strong>BN3</strong> Roles sin procedimiento de contingencia</span>
-            <span class="chip"><strong>BN4</strong> Proceso sin medición</span>
-            <span class="chip"><strong>BN5</strong> Sin conciliación de pendientes</span>
+          <div class="chips-block">
+            <h3 class="panel-title">Brechas detectadas (BN1–BN5)</h3>
+            <div class="chips" aria-label="Brechas de negocio de la línea base">
+              <span class="chip"><strong>BN1</strong> No hay un plan de contingencia formal</span>
+              <span class="chip"><strong>BN2</strong> La caja depende de la DIAN para cerrar</span>
+              <span class="chip"><strong>BN3</strong> El personal no tiene un procedimiento claro</span>
+              <span class="chip"><strong>BN4</strong> El proceso no se mide</span>
+              <span class="chip"><strong>BN5</strong> No hay conciliación de pendientes</span>
+            </div>
           </div>
         </article>
       </section>
@@ -233,76 +266,118 @@
       <!-- C. TO-BE -->
       <section class="arch-section" id="tobe" aria-labelledby="tobe-title">
         <div class="section-head">
-          <h2 id="tobe-title">La solución: contingencia como capacidad de primera clase</h2>
-          <p>La emisión sale del hilo de caja mediante eventos. Si la DIAN cae, el documento sigue su camino en modo contingencia y se concilia automáticamente al restablecerse.</p>
+          <h2 id="tobe-title">La solución: vender y facturar son dos cosas distintas</h2>
+          <p>La idea clave es <b>separar la venta de la factura</b>. La caja registra y sigue atendiendo; la factura se construye y se envía en segundo plano. Si la DIAN falla, la factura se guarda con validez local y se envía después.</p>
         </div>
+
+        <div class="two-lanes" aria-label="Dos carriles: caja y facturación">
+          <article class="lane lane-caja">
+            <h3><span class="lane-dot"></span> Carril 1 · La caja <small>nunca se detiene</small></h3>
+            <p>Registrar la venta publica un aviso <b>(VentaRegistrada)</b> en una bandeja segura <b>(Outbox)</b>. La caja queda libre al instante para la siguiente venta.</p>
+          </article>
+          <article class="lane lane-fact">
+            <h3><span class="lane-dot"></span> Carril 2 · Facturación <small>trabaja en segundo plano</small></h3>
+            <p>Otro módulo recibe el aviso, crea la factura, la firma y la envía. Si la DIAN no responde, guarda la factura y la reintenta más tarde.</p>
+          </article>
+        </div>
+
         <article class="card dash-panel">
+          <h3 class="panel-title">El recorrido de una venta mañana</h3>
+          <p class="flow-intro">Los pasos 1 a 3 ocurren en la caja y tardan segundos. El resto ocurre en segundo plano.</p>
           <ol class="flow" id="tobe-flow" aria-label="Flujo destino de cierre de caja con contingencia y conciliación">
-            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><h3>Cajero registra venta</h3><p>La caja sigue operando.</p></li>
+            <li class="flow-step" data-sim-step><span class="step-num">1</span><h3>El cajero registra la venta</h3><p>La caja sigue operando.</p></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"/><polyline points="4 8 12 14 20 8"/></svg></span><h3>Publica VentaRegistrada</h3><p>Outbox transaccional.</p></li>
+            <li class="flow-step" data-sim-step><span class="step-num">2</span><h3>Publica VentaRegistrada</h3><p>Queda guardado en la bandeja segura.</p></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="2" cy="7" r="0.5"/><circle cx="2" cy="12" r="0.5"/><circle cx="2" cy="17" r="0.5"/></svg></span><h3>Bus de eventos</h3><p>Entrega garantizada a Facturación.</p></li>
+            <li class="flow-step" data-sim-step><span class="step-num">3</span><h3>El bus de eventos avisa</h3><p>Entrega garantizada a Facturación.</p></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><h3>Documento Borrador</h3><p>Facturación lo crea.</p></li>
+            <li class="flow-step" data-sim-step><span class="step-num">4</span><h3>Se crea el Borrador</h3><p>Facturación construye el documento.</p></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h3>Firma local</h3><p>XAdES-B + CUFE/CUDE.</p></li>
+            <li class="flow-step" data-sim-step><span class="step-num">5</span><h3>Firma local</h3><p>Se genera el CUFE/CUDE y la firma digital.</p></li>
             <li class="flow-arrow" aria-hidden="true">→</li>
-            <li class="flow-step" data-sim-step><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>¿Validación previa disponible?</h3><p>Comprueba la DIAN sin bloquear.</p></li>
+            <li class="flow-step" data-sim-step><span class="step-num">6</span><h3>¿La DIAN responde?</h3><p>Se comprueba sin bloquear la caja.</p></li>
           </ol>
 
-          <div class="flow-branch">
-            <p class="flow-label" style="color:var(--jb-success-text)">├─ Sí → Transmitido → Aceptado → Notificación → Cierre OK</p>
-            <div class="flow-branch"><ol class="flow" aria-label="Rama de contingencia y conciliación automática">
-              <span class="flow-label warn">└─ No →</span>
-              <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><h3>Emitido localmente</h3><p>Contingencia: la caja no se detiene.</p></li>
-              <li class="flow-arrow" aria-hidden="true">→</li>
-              <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><h3>Cola de contingencia</h3><p>Eventos pendientes de reintento.</p></li>
-              <li class="flow-arrow" aria-hidden="true">→</li>
-              <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></span><h3>Sincronizador</h3><p>Retransmite al restablecerse.</p></li>
-              <li class="flow-arrow" aria-hidden="true">→</li>
-              <li class="flow-step success" data-sim-step data-branch="contingencia"><span class="step-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><h3>Transmitido → Aceptado</h3><p>Conciliación automática (99 %).</p></li>
-            </ol></div>
+          <div class="branch-grid">
+            <article class="branch-card ok">
+              <h4>Sí responde → camino normal</h4>
+              <p><b>Transmitido → Aceptado</b> → se notifica al cliente → cierre completado. Todo en menos de 3 segundos.</p>
+              <span class="badge success">Camino normal</span>
+            </article>
+            <div class="branch-card warn">
+              <h4>No responde → contingencia (el plan B)</h4>
+              <p class="flow-intro">La factura ya es válida localmente. Se guarda y se envía sola cuando la DIAN vuelve.</p>
+              <ol class="flow flow-compact" aria-label="Rama de contingencia y conciliación automática">
+                <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-num">A</span><h3>Emitido localmente</h3><p>La caja no se detiene.</p></li>
+                <li class="flow-arrow" aria-hidden="true">→</li>
+                <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-num">B</span><h3>Cola de contingencia</h3><p>Queda esperando su reintento.</p></li>
+                <li class="flow-arrow" aria-hidden="true">→</li>
+                <li class="flow-step warn" data-sim-step data-branch="contingencia"><span class="step-num">C</span><h3>Sincronizador</h3><p>Retransmite al restablecerse.</p></li>
+                <li class="flow-arrow" aria-hidden="true">→</li>
+                <li class="flow-step success" data-sim-step data-branch="contingencia"><span class="step-num">D</span><h3>Transmitido → Aceptado</h3><p>Conciliación automática (99 %).</p></li>
+              </ol>
+            </div>
           </div>
 
-          <span class="badge success" style="margin-top:12px">✓ La caja NUNCA se bloquea en ninguna rama</span>
+          <p class="sim-banner">✓ En ninguna de las dos ramas la caja se bloquea: se puede seguir vendiendo siempre.</p>
 
-          <div class="sim-controls">
-            <button class="cta" type="button" id="simulate-btn">Simular caída de la DIAN</button>
-            <button class="secondary-button" type="button" id="reset-btn">Restablecer</button>
-            <span class="sim-status" id="sim-status" aria-live="polite">Listo para simular una caída de 45 minutos.</span>
+          <div class="sim-card">
+            <div>
+              <h3 class="panel-title">Pruébalo tú mismo</h3>
+              <p>Presione <b>Simular caída de la DIAN</b> para recorrer los pasos animados. Verá que la caja sigue activa, que las facturas se guardan y que al restablecerse se concilian solas.</p>
+            </div>
+            <div class="sim-controls">
+              <button class="cta" type="button" id="simulate-btn">Simular caída de la DIAN</button>
+              <button class="secondary-button" type="button" id="reset-btn">Restablecer</button>
+              <span class="sim-status" id="sim-status" aria-live="polite">Listo para simular una caída de 45 minutos.</span>
+            </div>
+            <div class="sim-metrics" aria-label="Resultados de la simulación">
+              <div class="metric"><strong id="metric-blocked">0</strong><span>ventas bloqueadas</span></div>
+              <div class="metric warn"><strong id="metric-contingency">0</strong><span>facturas en contingencia</span></div>
+              <div class="metric success"><strong id="metric-reconciled">0 %</strong><span>conciliadas automáticamente</span></div>
+            </div>
           </div>
         </article>
 
-        <div class="section-head" style="margin-top:32px">
-          <h2>Máquina de estados del documento</h2>
-          <p>Cinco estados explícitos: el documento tributario deja de ser un banner binario «emitida / no emitida».</p>
+        <div class="section-head">
+          <h2>5 estados, en vez de un sí o un no</h2>
+          <p>Antes una factura era «emitida» o «no emitida». Ahora siempre se sabe en qué punto está. Haga clic en cada estado para leer qué significa.</p>
         </div>
         <article class="card dash-panel">
           <div class="stepper" role="tablist" aria-label="Estados del documento tributario">
-            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="borrador" aria-describedby="state-panel"><span class="state-dot">1</span><span class="state-name">Borrador</span></button>
-            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="local" aria-describedby="state-panel"><span class="state-dot">2</span><span class="state-name">Emitido localmente</span></button>
-            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="firmado" aria-describedby="state-panel"><span class="state-dot">3</span><span class="state-name">Firmado</span></button>
-            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="transmitido" aria-describedby="state-panel"><span class="state-dot">4</span><span class="state-name">Transmitido</span></button>
-            <button class="state-node" type="button" role="tab" aria-selected="true" data-state="aceptado" aria-describedby="state-panel"><span class="state-dot">5</span><span class="state-name">Aceptado</span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="borrador" aria-describedby="state-panel"><span class="state-dot">1</span><span class="state-name">Borrador<small>se crea</small></span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="local" aria-describedby="state-panel"><span class="state-dot">2</span><span class="state-name">Emitido localmente<small>sin DIAN</small></span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="firmado" aria-describedby="state-panel"><span class="state-dot">3</span><span class="state-name">Firmado<small>con firma</small></span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="false" data-state="transmitido" aria-describedby="state-panel"><span class="state-dot">4</span><span class="state-name">Transmitido<small>enviado</small></span></button>
+            <button class="state-node" type="button" role="tab" aria-selected="true" data-state="aceptado" aria-describedby="state-panel"><span class="state-dot">5</span><span class="state-name">Aceptado<small>validado</small></span></button>
           </div>
           <div class="state-panel" id="state-panel" role="tabpanel" aria-live="polite">
             <h3>Aceptado</h3>
             <p>La DIAN validó el documento y devolvió su aceptación. Se notifica al cliente y el cierre queda completo.</p>
           </div>
-          <div class="slo-grid" aria-label="Objetivos de nivel de servicio">
-            <article class="card slo-card"><span class="step-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><strong>p95 ≤ 3 s</strong><span>Latencia de emisión</span></article>
-            <article class="card slo-card"><span class="step-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><polyline points="17 7 21 7 21 11"/></svg></span><strong>60 doc/min</strong><span>Capacidad de emisión</span></article>
-            <article class="card slo-card"><span class="step-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><strong>99,9 %</strong><span>Disponibilidad</span></article>
-            <article class="card slo-card"><span class="step-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></span><strong>99 %</strong><span>Conciliación automática</span></article>
+          <p class="note-line">El estado 2 es el corazón de la contingencia: la factura ya es válida localmente aunque la DIAN no responda.</p>
+
+          <div class="section-head" style="margin-top:28px">
+            <h2 style="font-size:1.1rem">¿Cómo sabemos que funciona?</h2>
+            <p>Un <b>SLO</b> es una meta de servicio: un número que se vigila para detectar problemas antes de que afecten a la caja.</p>
           </div>
-          <div class="chips" aria-label="Capacidades de la arquitectura destino">
-            <span class="chip"><strong>C1</strong> Gestión comercial y POS</span>
-            <span class="chip"><strong>C2</strong> Emisión y cumplimiento fiscal</span>
-            <span class="chip"><strong>C3</strong> Inventario y catálogo</span>
-            <span class="chip"><strong>C4</strong> Analítica y cierre contable</span>
-            <span class="chip"><strong>C5</strong> Administración de plataforma</span>
-            <span class="chip highlight"><strong>C6</strong> Contingencia fiscal <span class="badge info">Nueva</span></span>
+          <div class="slo-grid" aria-label="Objetivos de nivel de servicio">
+            <article class="card slo-card"><strong>p95 ≤ 3 s</strong><span>El 95 % de las facturas se emite en 3 segundos o menos.</span></article>
+            <article class="card slo-card"><strong>60 doc/min</strong><span>La plataforma puede emitir hasta 60 facturas por minuto.</span></article>
+            <article class="card slo-card"><strong>99,9 %</strong><span>Disponibilidad: menos de 9 horas caídas al año.</span></article>
+            <article class="card slo-card"><strong>99 %</strong><span>Al volver la DIAN, 99 de cada 100 pendientes se concilian solos.</span></article>
+          </div>
+
+          <div class="chips-block">
+            <h3 class="panel-title">Qué partes del sistema participan (C1–C6)</h3>
+            <div class="chips" aria-label="Capacidades de la arquitectura destino">
+              <span class="chip"><strong>C1</strong> Ventas y caja</span>
+              <span class="chip"><strong>C2</strong> Facturación y DIAN</span>
+              <span class="chip"><strong>C3</strong> Productos e inventario</span>
+              <span class="chip"><strong>C4</strong> Reportes y cierre contable</span>
+              <span class="chip"><strong>C5</strong> Usuarios y plataforma</span>
+              <span class="chip highlight"><strong>C6</strong> Contingencia fiscal <span class="badge info">Nueva</span></span>
+            </div>
           </div>
         </article>
       </section>
@@ -310,30 +385,54 @@
       <!-- D. HOJA DE RUTA -->
       <section class="arch-section" id="roadmap" aria-labelledby="roadmap-title">
         <div class="section-head">
-          <h2 id="roadmap-title">Cómo llegamos: iniciativas e hitos</h2>
-          <p>Ocho iniciativas ordenadas en seis fases, con cinco hitos medibles que cierran las brechas de la línea base.</p>
+          <h2 id="roadmap-title">El plan: 8 iniciativas en 6 fases</h2>
+          <p><b>I</b> = iniciativa (trabajo por hacer). <b>H</b> = hito (meta que se puede comprobar). Las fases van de la 0 a la 5 y se construyen en ese orden.</p>
+        </div>
+        <div class="phase-track" aria-label="Fases del plan">
+          <span>Fase 0</span><i>→</i><span>Fase 1</span><i>→</i><span>Fase 2</span><i>→</i><span>Fase 3</span><i>→</i><span>Fase 4</span><i>→</i><span>Fase 5</span>
         </div>
         <div class="roadmap-layout">
           <article class="card dash-panel">
-            <h3 class="panel-title" style="margin-bottom:10px">Iniciativas</h3>
+            <h3 class="panel-title" style="margin-bottom:10px">Iniciativas (qué vamos a hacer)</h3>
             <ol class="initiative-list">
-              <li class="initiative"><span class="phase-chip">Fase 0</span><div><h3>I1 · Plataforma base</h3><p>Módulo shared, DDD hexagonal y maestros.</p></div></li>
-              <li class="initiative"><span class="phase-chip">Fase 1</span><div><h3>I2 · API Gateway e Identidad</h3><p>Borde consolidado y autenticación centralizada.</p></div></li>
-              <li class="initiative"><span class="phase-chip">Fase 2</span><div><h3>I3 · Facturación</h3><p>Máquina de 5 estados, UBL 2.1 y firma XAdES.</p></div></li>
-              <li class="initiative"><span class="phase-chip">Fase 2</span><div><h3>I4 · POS y Ventas con Outbox</h3><p>Emisión desacoplada del hilo de caja.</p></div></li>
-              <li class="initiative"><span class="phase-chip">Fase 3</span><div><h3>I5 · Sincronización de contingencia</h3><p>Cola de reintentos y conciliación automática.</p></div></li>
-              <li class="initiative"><span class="phase-chip">Fase 4</span><div><h3>I6 · Reportes (CQRS) y Notificaciones</h3><p>Cierre contable y avisos al cliente.</p></div></li>
-              <li class="initiative"><span class="phase-chip">Fase 4</span><div><h3>I7 · Observabilidad</h3><p>Prometheus, Loki, Zipkin y SLO en Grafana.</p></div></li>
-              <li class="initiative"><span class="phase-chip">Fase 5</span><div><h3>I8 · Producción en Kubernetes</h3><p>Despliegue y operación de la plataforma.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 0</span><div><h3>I1 · Base de la plataforma</h3><p>Preparamos la estructura técnica y los datos maestros: productos, clientes e impuestos.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 1</span><div><h3>I2 · Entrada única y accesos</h3><p>Todas las peticiones pasan por un solo punto y el inicio de sesión queda centralizado.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 2</span><div><h3>I3 · Facturación electrónica</h3><p>La factura recorre los 5 estados, se genera en formato UBL 2.1 y se firma digitalmente.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 2</span><div><h3>I4 · Caja desacoplada</h3><p>La caja publica la venta y sigue atendiendo: deja de esperar a la DIAN.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 3</span><div><h3>I5 · Contingencia y sincronización</h3><p>Cola de reintentos y conciliación automática al restablecerse el servicio.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 4</span><div><h3>I6 · Reportes y avisos</h3><p>Cierre contable con datos unificados y notificaciones al cliente. (CQRS)</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 4</span><div><h3>I7 · Monitoreo</h3><p>Paneles y alertas para vigilar las 4 metas de servicio.</p></div></li>
+              <li class="initiative"><span class="phase-chip">Fase 5</span><div><h3>I8 · Producción</h3><p>Despliegue y operación de la plataforma en Kubernetes.</p></div></li>
             </ol>
           </article>
-          <div class="milestone-grid">
-            <article class="card milestone"><div class="milestone-head"><h3>H1 · Plataforma operable</h3><span class="phase-tag">Fase 0</span></div><p>Maestros servidos con índice HMAC.</p></article>
-            <article class="card milestone"><div class="milestone-head"><h3>H2 · Borde consolidado</h3><span class="phase-tag">Fase 1</span></div><p>Todo el tráfico externo pasa por el gateway.</p></article>
-            <article class="card milestone"><div class="milestone-head"><h3>H3 · Emisión conforme</h3><span class="phase-tag">Fase 2</span></div><p>El documento recorre los 5 estados con CUFE/CUDE y XAdES-B.</p></article>
-            <article class="card milestone"><div class="milestone-head"><h3>H4 · Cadena de contingencia</h3><span class="phase-tag">Fase 3</span></div><p>Caída simulada de 45 min: cero ventas bloqueadas y 99 % conciliado.</p></article>
-            <article class="card milestone"><div class="milestone-head"><h3>H5 · SLO instrumentados</h3><span class="phase-tag">Fases 4–5</span></div><p>KPIs como alertas en Grafana y producción en Kubernetes.</p></article>
+          <div>
+            <h3 class="panel-title" style="margin-bottom:14px">Hitos (cómo sabemos que avanzamos)</h3>
+            <div class="milestone-grid">
+              <article class="card milestone"><div class="milestone-head"><h3>H1 · Plataforma lista</h3><span class="phase-tag">Fase 0</span></div><p>Los datos maestros ya se consultan desde un solo lugar.</p></article>
+              <article class="card milestone"><div class="milestone-head"><h3>H2 · Borde consolidado</h3><span class="phase-tag">Fase 1</span></div><p>Todo el tráfico externo entra por el gateway.</p></article>
+              <article class="card milestone"><div class="milestone-head"><h3>H3 · Facturación conforme</h3><span class="phase-tag">Fase 2</span></div><p>Una factura completa los 5 estados con CUFE/CUDE y firma XAdES-B.</p></article>
+              <article class="card milestone"><div class="milestone-head"><h3>H4 · Cadena de contingencia</h3><span class="phase-tag">Fase 3</span></div><p>En una caída simulada de 45 min: 0 ventas bloqueadas y 99 % conciliado.</p></article>
+              <article class="card milestone"><div class="milestone-head"><h3>H5 · Operación medida</h3><span class="phase-tag">Fases 4–5</span></div><p>Las metas se ven en Grafana y la plataforma corre en Kubernetes.</p></article>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <!-- E. GLOSARIO -->
+      <section class="arch-section" aria-labelledby="glosario-title">
+        <div class="section-head">
+          <h2 id="glosario-title">Glosario rápido</h2>
+          <p>Las palabras técnicas que aparecen en esta página, explicadas en una línea.</p>
+        </div>
+        <div class="glossary">
+          <div class="glossary-item"><strong>DIAN</strong><span>Entidad del Estado que valida y aprueba las facturas electrónicas.</span></div>
+          <div class="glossary-item"><strong>Outbox</strong><span>Bandeja donde se guarda el aviso de la venta para enviarlo después sin perderlo.</span></div>
+          <div class="glossary-item"><strong>Bus de eventos</strong><span>El mensajero que lleva el aviso de venta al módulo de facturación.</span></div>
+          <div class="glossary-item"><strong>CUFE / CUDE</strong><span>Código único que identifica la factura o nota crédito ante la DIAN.</span></div>
+          <div class="glossary-item"><strong>XAdES-B</strong><span>Firma digital que garantiza que el documento no fue modificado.</span></div>
+          <div class="glossary-item"><strong>p95</strong><span>El 95 % de los casos cumple ese tiempo de respuesta.</span></div>
+          <div class="glossary-item"><strong>CQRS</strong><span>Separar la escritura de la lectura para que los reportes no frenen la caja.</span></div>
+          <div class="glossary-item"><strong>Idempotente</strong><span>Poder reenviar un aviso varias veces sin crear facturas duplicadas.</span></div>
         </div>
       </section>
     </main>
